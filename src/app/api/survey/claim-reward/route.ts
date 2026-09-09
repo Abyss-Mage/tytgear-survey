@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { buildLeadRow, appendLeadRowToSheets } from "@/lib/google/sheets";
+import { buildLeadRow, appendLeadRowToSheets, buildCouponRow, appendCouponRowToSheets } from "@/lib/google/sheets";
 import { sendCouponEmail } from "@/lib/email/sendCoupon";
 import { GUARANTEED_DISCOUNT_CODE } from "@/config/survey";
 import fs from "fs";
@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
     const { response_id, email, contact_consent, affiliation } = parseResult.data;
     const timestamp = new Date().toISOString();
 
-    // 1. Record lead to local leads.json fallback
+    // 1. Record lead to local leads.json & coupons.json fallback
     try {
       const dataDir = path.join(process.cwd(), ".data");
       if (!fs.existsSync(dataDir)) {
@@ -58,11 +58,18 @@ export async function POST(req: NextRequest) {
 
       existingLeads.push(leadRecord);
       fs.writeFileSync(leadsPath, JSON.stringify(existingLeads, null, 2));
+
+      const couponsPath = path.join(dataDir, "coupons.json");
+      const existingCoupons: unknown[] = fs.existsSync(couponsPath)
+        ? JSON.parse(fs.readFileSync(couponsPath, "utf-8"))
+        : [];
+      existingCoupons.push(buildCouponRow(response_id, email, timestamp));
+      fs.writeFileSync(couponsPath, JSON.stringify(existingCoupons, null, 2));
     } catch (e) {
-      console.warn("Could not write to .data/leads.json:", e);
+      console.warn("Could not write to local fallback:", e);
     }
 
-    // 2. Append to Google Sheets Leads tab if configured
+    // 2. Append to Google Sheets Leads & WooCommerce Coupons tabs
     try {
       const leadRow = [
         response_id,
@@ -75,8 +82,11 @@ export async function POST(req: NextRequest) {
         "",      // handle
       ];
       await appendLeadRowToSheets(leadRow);
+
+      const couponRow = buildCouponRow(response_id, email, timestamp);
+      await appendCouponRowToSheets(couponRow);
     } catch (e) {
-      console.warn("Could not append lead to Google Sheets:", e);
+      console.warn("Could not append lead/coupon to Google Sheets:", e);
     }
 
     // 3. Dispatch discount coupon and giveaway entry email

@@ -127,7 +127,31 @@ async function testGoogleSheets() {
   });
   console.log("Leads append status:", leadRes.status, leadRes.data.updates.updatedRange);
 
-  console.log("SUCCESS! Both Responses and Leads successfully wrote to live Google Sheet!");
+  // 3. Append a test coupon row to WooCommerce Coupons tab
+  const testCouponRow = [
+    testResponseId,
+    "percent",
+    20,
+    "tester@tytgear.com",
+    1,
+    1,
+    "yes",
+    "TYTGEAR Pre-Launch Survey 20% Off",
+    new Date().toISOString(),
+  ];
+
+  console.log("Appending test row to WooCommerce Coupons tab...");
+  const couponRes = await sheets.spreadsheets.values.append({
+    spreadsheetId: sheetId,
+    range: "WooCommerce Coupons!A:I",
+    valueInputOption: "USER_ENTERED",
+    requestBody: {
+      values: [testCouponRow],
+    },
+  });
+  console.log("WooCommerce Coupons append status:", couponRes.status, couponRes.data.updates.updatedRange);
+
+  console.log("SUCCESS! All 3 tabs (Responses, Leads, and WooCommerce Coupons) wrote to live Google Sheet!");
 }
 
 testGoogleSheets().catch((err) => {

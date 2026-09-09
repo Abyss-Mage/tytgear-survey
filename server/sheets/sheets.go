@@ -78,7 +78,7 @@ func AppendResponse(ctx context.Context, cfg *config.Config, p *models.SurveySub
 		}
 	}
 
-	// 2. Append to Leads tab if user consented to updates
+	// 2. Append to Leads & WooCommerce Coupons tabs if user consented to updates
 	if p.WantUpdates == "Yes" && p.ContactConsent && strings.TrimSpace(p.Email) != "" {
 		leadRow := p.BuildLeadRow(completedAt)
 		leadVr := &sheetsAPI.ValueRange{
@@ -92,7 +92,20 @@ func AppendResponse(ctx context.Context, cfg *config.Config, p *models.SurveySub
 
 		if err != nil {
 			log.Printf("Google Sheets Leads tab Append warning: %v", err)
-			// Don't fail the entire submission if lead append failed
+		}
+
+		couponRow := p.BuildCouponRow(completedAt)
+		couponVr := &sheetsAPI.ValueRange{
+			Values: [][]interface{}{couponRow},
+		}
+
+		_, err = srv.Spreadsheets.Values.Append(cfg.GoogleSheetID, "WooCommerce Coupons!A:I", couponVr).
+			ValueInputOption("USER_ENTERED").
+			Context(ctx).
+			Do()
+
+		if err != nil {
+			log.Printf("Google Sheets WooCommerce Coupons tab Append warning: %v", err)
 		}
 	}
 

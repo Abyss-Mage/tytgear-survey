@@ -62,6 +62,18 @@ export const LEADS_HEADERS = [
   "Creator Handle / Link",
 ];
 
+export const COUPONS_HEADERS = [
+  "coupon_code",
+  "discount_type",
+  "coupon_amount",
+  "customer_email",
+  "usage_limit",
+  "usage_limit_per_user",
+  "individual_use",
+  "description",
+  "date_created",
+];
+
 /**
  * Clean multi-select array into a pipe-delimited string
  */
@@ -164,6 +176,27 @@ export function buildLeadRow(
 }
 
 /**
+ * Build a row array for Google Sheets WooCommerce Coupons tab (CSV import ready)
+ */
+export function buildCouponRow(
+  responseId: string,
+  email: string,
+  timestamp: string
+): (string | number)[] {
+  return [
+    responseId,
+    "percent",
+    20,
+    email,
+    1,
+    1,
+    "yes",
+    "TYTGEAR Pre-Launch Survey 20% Off",
+    timestamp,
+  ];
+}
+
+/**
  * Initializes Google Sheets API authenticated client using service account credentials.
  */
 export function getGoogleSheetsClient() {
@@ -221,6 +254,24 @@ export async function appendLeadRowToSheets(leadRow: (string | boolean)[]) {
 }
 
 /**
+ * Appends a coupon row directly to the WooCommerce Coupons tab in Google Sheets
+ */
+export async function appendCouponRowToSheets(couponRow: (string | number)[]) {
+  const clientInfo = getGoogleSheetsClient();
+  if (!clientInfo) return false;
+
+  const { sheets, sheetId } = clientInfo;
+  return sheets.spreadsheets.values.append({
+    spreadsheetId: sheetId,
+    range: "WooCommerce Coupons!A:I",
+    valueInputOption: "USER_ENTERED",
+    requestBody: {
+      values: [couponRow],
+    },
+  });
+}
+
+/**
  * Appends a response row to Google Sheets (or fallback local JSON if credentials missing).
  */
 export async function appendSurveyResponse(
@@ -264,6 +315,13 @@ export async function appendSurveyResponse(
             : [];
           existingLeads.push(buildLeadRow(data, metadata.completed_at));
           fs.writeFileSync(leadsPath, JSON.stringify(existingLeads, null, 2));
+
+          const couponsPath = path.join(dataDir, "coupons.json");
+          const existingCoupons: unknown[] = fs.existsSync(couponsPath)
+            ? JSON.parse(fs.readFileSync(couponsPath, "utf-8"))
+            : [];
+          existingCoupons.push(buildCouponRow(data.response_id, data.email, metadata.completed_at));
+          fs.writeFileSync(couponsPath, JSON.stringify(existingCoupons, null, 2));
         }
 
         return { success: true, mode: "fallback" };
@@ -299,7 +357,7 @@ export async function appendSurveyResponse(
       },
     });
 
-    // 2. If user consented to updates/giveaway, append to Leads tab
+    // 2. If user consented to updates/giveaway, append to Leads & WooCommerce Coupons tabs
     if (data.want_updates === "Yes" && data.contact_consent && data.email) {
       const leadRow = buildLeadRow(data, metadata.completed_at);
       await sheets.spreadsheets.values.append({
@@ -308,6 +366,16 @@ export async function appendSurveyResponse(
         valueInputOption: "USER_ENTERED",
         requestBody: {
           values: [leadRow],
+        },
+      });
+
+      const couponRow = buildCouponRow(data.response_id, data.email, metadata.completed_at);
+      await sheets.spreadsheets.values.append({
+        spreadsheetId: sheetId,
+        range: "WooCommerce Coupons!A:I",
+        valueInputOption: "USER_ENTERED",
+        requestBody: {
+          values: [couponRow],
         },
       });
     }

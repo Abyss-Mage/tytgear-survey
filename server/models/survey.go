@@ -250,3 +250,18 @@ func (p *SurveySubmissionPayload) BuildLeadRow(completedAt string) []interface{}
 		p.CreatorHandle,
 	}
 }
+
+// BuildCouponRow creates the WooCommerce CSV import row
+func (p *SurveySubmissionPayload) BuildCouponRow(completedAt string) []interface{} {
+	return []interface{}{
+		p.ResponseID,
+		"percent",
+		20,
+		p.Email,
+		1,
+		1,
+		"yes",
+		"TYTGEAR Pre-Launch Survey 20% Off",
+		completedAt,
+	}
+}
