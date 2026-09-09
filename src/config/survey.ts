@@ -149,7 +149,10 @@ export const INITIAL_SURVEY_ANSWERS: SurveyAnswers = {
   // Section 10 - Creator Application
   is_creator: false,
   creator_platform: "",
+  creator_platforms: [],
   creator_handle: "",
   creator_audience: "",
   creator_collab_type: [],
+  creator_email: "",
+  creator_terms_accepted: false,
 };

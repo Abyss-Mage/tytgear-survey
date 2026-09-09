@@ -295,11 +295,14 @@ export function findFirstIncompleteStep(
 
   // Step 14: Creator details if opted in
   if (answers.is_creator) {
-    if (!answers.creator_platform) {
+    const hasPlatform =
+      (answers.creator_platforms && answers.creator_platforms.length > 0) ||
+      (answers.creator_platform && answers.creator_platform.trim().length > 0);
+    if (!hasPlatform) {
       return {
         step: 14,
-        field: "creator_platform",
-        message: "Please select your primary content platform.",
+        field: "creator_platforms",
+        message: "Please select at least one content platform.",
       };
     }
     if (!answers.creator_handle || answers.creator_handle.trim().length === 0) {
@@ -314,6 +317,23 @@ export function findFirstIncompleteStep(
         step: 14,
         field: "creator_audience",
         message: "Please select your estimated follower or club size.",
+      };
+    }
+    if (
+      !answers.creator_email ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(answers.creator_email.trim())
+    ) {
+      return {
+        step: 14,
+        field: "creator_email",
+        message: "Please enter a valid contact email for creator collaborations.",
+      };
+    }
+    if (!answers.creator_terms_accepted) {
+      return {
+        step: 14,
+        field: "creator_terms_accepted",
+        message: "Please read and agree to the partnership expectations.",
       };
     }
   }

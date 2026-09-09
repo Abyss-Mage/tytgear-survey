@@ -73,10 +73,7 @@ const SurveySubmissionSchema = z
       .array(z.string())
       .min(1, "Please select what makes a design worth purchasing")
       .max(3, "Please select up to 3 reasons"),
-    designs_appealing: z
-      .array(z.string())
-      .min(1, "Please select at least 1 appealing design")
-      .max(3, "Please select up to 3 designs"),
+    designs_appealing: z.array(z.string()).optional(),
     design_most_likely_purchase: z.string().optional(),
 
     // Section 6: Product Budget Ranges
@@ -127,9 +124,12 @@ const SurveySubmissionSchema = z
     // Section 10: Creator Application (Optional)
     is_creator: z.boolean().optional(),
     creator_platform: z.string().optional(),
+    creator_platforms: z.array(z.string()).optional(),
     creator_handle: z.string().optional(),
     creator_audience: z.string().optional(),
     creator_collab_type: z.array(z.string()).optional(),
+    creator_email: z.string().optional(),
+    creator_terms_accepted: z.boolean().optional(),
   })
   .refine(
     (data) => {
@@ -142,6 +142,72 @@ const SurveySubmissionSchema = z
     {
       message: "Please enter a valid email address and consent to receive updates & enter the giveaway",
       path: ["email"],
+    }
+  )
+  .refine(
+    (data) => {
+      if (data.is_creator) {
+        const hasPlatform =
+          (data.creator_platforms && data.creator_platforms.length > 0) ||
+          (data.creator_platform && data.creator_platform.trim().length > 0);
+        return hasPlatform;
+      }
+      return true;
+    },
+    {
+      message: "Please select at least one content platform",
+      path: ["creator_platforms"],
+    }
+  )
+  .refine(
+    (data) => {
+      if (data.is_creator) {
+        return Boolean(data.creator_handle && data.creator_handle.trim().length > 0);
+      }
+      return true;
+    },
+    {
+      message: "Please share your channel handle, profile link, or society name",
+      path: ["creator_handle"],
+    }
+  )
+  .refine(
+    (data) => {
+      if (data.is_creator) {
+        return Boolean(data.creator_audience && data.creator_audience.trim().length > 0);
+      }
+      return true;
+    },
+    {
+      message: "Please select your estimated community or follower size",
+      path: ["creator_audience"],
+    }
+  )
+  .refine(
+    (data) => {
+      if (data.is_creator) {
+        if (!data.creator_email || data.creator_email.trim().length === 0) {
+          return false;
+        }
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.creator_email.trim());
+      }
+      return true;
+    },
+    {
+      message: "Please enter a valid creator contact email",
+      path: ["creator_email"],
+    }
+  )
+  .refine(
+    (data) => {
+      if (data.is_creator) {
+        return data.creator_terms_accepted === true;
+      }
+      return true;
+    },
+    {
+      message: "Please accept the creator partnership expectations to proceed",
+      path: ["creator_terms_accepted"],
     }
   );
 

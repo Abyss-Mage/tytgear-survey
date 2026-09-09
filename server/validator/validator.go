@@ -180,14 +180,25 @@ func ValidateSubmission(p *models.SurveySubmissionPayload) []models.FieldError {
 
 	// Section 10 - Creator Application (Optional)
 	if p.IsCreator != nil && *p.IsCreator {
-		if strings.TrimSpace(p.CreatorPlatform) == "" {
-			addErr("creator_platform", "Primary platform is required for creator application")
+		hasPlatform := strings.TrimSpace(p.CreatorPlatform) != "" || len(p.CreatorPlatforms) > 0
+		if !hasPlatform {
+			addErr("creator_platforms", "Primary platform is required for creator application")
 		}
 		if strings.TrimSpace(p.CreatorHandle) == "" {
 			addErr("creator_handle", "Channel handle or link is required for creator application")
 		}
 		if strings.TrimSpace(p.CreatorAudience) == "" {
 			addErr("creator_audience", "Audience size is required for creator application")
+		}
+		creatorEmail := strings.TrimSpace(p.CreatorEmail)
+		if creatorEmail == "" && strings.TrimSpace(p.Email) != "" {
+			creatorEmail = strings.TrimSpace(p.Email)
+		}
+		if creatorEmail == "" || !emailRegex.MatchString(creatorEmail) {
+			addErr("creator_email", "Valid creator contact email is required")
+		}
+		if p.CreatorTermsAccepted == nil || !*p.CreatorTermsAccepted {
+			addErr("creator_terms_accepted", "Please accept the partnership expectations")
 		}
 	}
 

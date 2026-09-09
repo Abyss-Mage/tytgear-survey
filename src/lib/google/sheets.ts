@@ -146,13 +146,17 @@ export function buildResponseRow(
     data.launch_offer,
     data.purchase_intent ?? "",
     data.want_updates || "No",
-    data.email || "",
-    data.contact_consent ? "TRUE" : "FALSE",
+    (data.creator_email || data.email || "").trim(),
+    data.contact_consent || Boolean(data.creator_email) ? "TRUE" : "FALSE",
     data.is_creator ? "TRUE" : "FALSE",
-    data.creator_platform || "",
+    data.creator_platforms && data.creator_platforms.length > 0
+      ? formatMulti(data.creator_platforms)
+      : data.creator_platform || "",
     data.creator_handle || "",
     data.creator_audience || "",
-    formatMulti(data.creator_collab_type),
+    data.creator_terms_accepted
+      ? "Agreed to Terms (Gives & Takes)"
+      : formatMulti(data.creator_collab_type),
     metadata.suspicious ? "TRUE" : "FALSE",
   ];
 }
@@ -165,14 +169,19 @@ export function buildLeadRow(
   timestamp: string
 ): (string | boolean)[] {
   const affiliation = data.affiliation || data.college_name || "";
+  const platforms =
+    data.creator_platforms && data.creator_platforms.length > 0
+      ? formatMulti(data.creator_platforms)
+      : data.creator_platform || "";
+
   return [
     data.response_id,
     timestamp,
     affiliation,
-    data.email || "",
-    data.contact_consent ? "TRUE" : "FALSE",
+    (data.creator_email || data.email || "").trim(),
+    data.contact_consent || Boolean(data.creator_email) ? "TRUE" : "FALSE",
     data.is_creator ? "TRUE" : "FALSE",
-    data.creator_platform || "",
+    platforms,
     data.creator_handle || "",
   ];
 }

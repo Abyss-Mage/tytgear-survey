@@ -95,9 +95,12 @@ export interface SurveyAnswers {
   // Section 10: Creator / Collab Partnership (Optional)
   is_creator?: boolean;
   creator_platform?: string;
+  creator_platforms?: string[];
   creator_handle?: string;
   creator_audience?: string;
   creator_collab_type?: string[];
+  creator_email?: string;
+  creator_terms_accepted?: boolean;
 }
 
 export interface SurveySubmissionPayload extends SurveyAnswers {

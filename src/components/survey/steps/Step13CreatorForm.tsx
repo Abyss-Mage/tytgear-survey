@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Sparkles, Video, Users, Gift, Megaphone } from "lucide-react";
+import { Sparkles, Gift } from "lucide-react";
 import { SingleChoice } from "../SingleChoice";
 import { MultiChoice } from "../MultiChoice";
 import { Input } from "@/components/ui/Input";
@@ -26,14 +26,6 @@ const AUDIENCE_TIERS = [
   "100,000+",
 ];
 
-const COLLAB_TYPES = [
-  "Free review units & seed gear",
-  "Dedicated discount code with creator commission",
-  "Sponsored video / stream placement",
-  "College fest or esports tournament sponsorship",
-  "Co-designing future mousepads & gear",
-];
-
 export const Step13CreatorForm: React.FC = () => {
   const { answers, updateAnswers } = useSurvey();
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -42,14 +34,24 @@ export const Step13CreatorForm: React.FC = () => {
     const errs: Record<string, string> = {};
 
     if (answers.is_creator) {
-      if (!answers.creator_platform) {
-        errs.creator_platform = "Please select your primary platform or role.";
+      const hasPlatform =
+        (answers.creator_platforms && answers.creator_platforms.length > 0) ||
+        (answers.creator_platform && answers.creator_platform.trim().length > 0);
+      if (!hasPlatform) {
+        errs.creator_platforms = "Please select at least one platform or role.";
       }
       if (!answers.creator_handle || answers.creator_handle.trim().length === 0) {
         errs.creator_handle = "Please share your channel handle, profile link, or society name.";
       }
       if (!answers.creator_audience) {
         errs.creator_audience = "Please select your estimated follower or club size.";
+      }
+      const emailToTest = (answers.creator_email || answers.email || "").trim();
+      if (!emailToTest || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailToTest)) {
+        errs.creator_email = "Please enter a valid email address for creator communications.";
+      }
+      if (!answers.creator_terms_accepted) {
+        errs.creator_terms_accepted = "Please accept the partnership expectations to apply.";
       }
     }
 
@@ -72,31 +74,6 @@ export const Step13CreatorForm: React.FC = () => {
         </p>
       </div>
 
-      {/* Benefits Card */}
-      <div className="p-4 sm:p-5 rounded-2xl bg-brand-50/50 border border-brand-200 space-y-3">
-        <h4 className="text-xs font-bold text-brand uppercase tracking-wider">
-          Why Partner With TYTGEAR?
-        </h4>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-brand-dark">
-          <div className="flex items-center gap-2">
-            <Gift className="w-4 h-4 text-brand flex-shrink-0" />
-            <span>Complimentary review units &amp; seed setups</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Users className="w-4 h-4 text-brand flex-shrink-0" />
-            <span>Dedicated discount code &amp; affiliate earnings</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Megaphone className="w-4 h-4 text-brand flex-shrink-0" />
-            <span>Sponsorships for college fests &amp; LAN events</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Video className="w-4 h-4 text-brand flex-shrink-0" />
-            <span>Opportunities to co-design official collections</span>
-          </div>
-        </div>
-      </div>
-
       {/* Collab Opt-In Question */}
       <div className="space-y-3">
         <label className="block text-sm font-bold text-brand-dark">
@@ -108,7 +85,7 @@ export const Step13CreatorForm: React.FC = () => {
             onClick={() => {
               updateAnswers({ is_creator: true });
             }}
-            className={`p-4 rounded-xl border text-sm font-semibold transition-all text-left flex items-center justify-between ${
+            className={`p-4 rounded-xl border text-sm font-semibold transition-all text-left flex items-center justify-between cursor-pointer ${
               answers.is_creator === true
                 ? "border-brand bg-brand-50 text-brand ring-2 ring-brand/20 shadow-sm"
                 : "border-canvas-border bg-canvas hover:border-brand-200 text-brand-dark"
@@ -130,13 +107,16 @@ export const Step13CreatorForm: React.FC = () => {
               updateAnswers({
                 is_creator: false,
                 creator_platform: "",
+                creator_platforms: [],
                 creator_handle: "",
                 creator_audience: "",
                 creator_collab_type: [],
+                creator_email: "",
+                creator_terms_accepted: false,
               });
               setErrors({});
             }}
-            className={`p-4 rounded-xl border text-sm font-semibold transition-all text-left flex items-center justify-between ${
+            className={`p-4 rounded-xl border text-sm font-semibold transition-all text-left flex items-center justify-between cursor-pointer ${
               answers.is_creator === false
                 ? "border-brand bg-brand-50 text-brand ring-2 ring-brand/20 shadow-sm"
                 : "border-canvas-border bg-canvas hover:border-brand-200 text-brand-dark"
@@ -157,25 +137,37 @@ export const Step13CreatorForm: React.FC = () => {
       {/* Creator Details (Conditional) */}
       {answers.is_creator && (
         <div className="space-y-6 pt-4 border-t border-canvas-border animate-fadeIn">
-          {/* Platform */}
+          {/* Multiple Selection Platform Selection */}
           <div className="space-y-3">
-            <label className="block text-sm font-bold text-brand-dark">
-              Where do you primarily create content or lead gaming activities? <span className="text-red-500">*</span>
-            </label>
-            <SingleChoice
-              name="creator_platform"
+            <div className="flex items-baseline justify-between">
+              <label className="block text-sm font-bold text-brand-dark">
+                Where do you primarily create content or lead gaming activities? <span className="text-red-500">*</span>
+              </label>
+              <span className="text-xs font-semibold text-brand">Select all that apply</span>
+            </div>
+            <MultiChoice
+              name="creator_platforms"
               options={CREATOR_PLATFORMS}
-              value={answers.creator_platform || ""}
-              onChange={(val) => {
-                updateAnswers({ creator_platform: val });
-                if (errors.creator_platform) {
-                  setErrors((prev) => ({ ...prev, creator_platform: "" }));
+              values={
+                answers.creator_platforms && answers.creator_platforms.length > 0
+                  ? answers.creator_platforms
+                  : answers.creator_platform
+                  ? answers.creator_platform.split(" | ")
+                  : []
+              }
+              onChange={(vals) => {
+                updateAnswers({
+                  creator_platforms: vals,
+                  creator_platform: vals.join(" | "),
+                });
+                if (errors.creator_platforms) {
+                  setErrors((prev) => ({ ...prev, creator_platforms: "" }));
                 }
               }}
               columns={2}
             />
-            {errors.creator_platform && (
-              <p className="text-xs font-medium text-red-600">{errors.creator_platform}</p>
+            {errors.creator_platforms && (
+              <p className="text-xs font-medium text-red-600">{errors.creator_platforms}</p>
             )}
           </div>
 
@@ -222,23 +214,97 @@ export const Step13CreatorForm: React.FC = () => {
             )}
           </div>
 
-          {/* Collaboration Type */}
-          <div className="space-y-3">
-            <div className="flex items-baseline justify-between">
-              <label className="block text-sm font-bold text-brand-dark">
-                How would you like to collaborate?
-              </label>
-              <span className="text-xs font-semibold text-brand">Select all that apply</span>
-            </div>
-            <MultiChoice
-              name="creator_collab_type"
-              options={COLLAB_TYPES}
-              values={answers.creator_collab_type || []}
-              onChange={(vals) => {
-                updateAnswers({ creator_collab_type: vals });
+          {/* Creator Contact Email */}
+          <div className="space-y-2">
+            <label className="block text-sm font-bold text-brand-dark">
+              Creator Contact Email <span className="text-red-500">*</span>
+            </label>
+            <Input
+              type="email"
+              placeholder="e.g. yourchannel@gmail.com, creator@business.com"
+              value={answers.creator_email || answers.email || ""}
+              onChange={(e) => {
+                const val = e.target.value;
+                updateAnswers({
+                  creator_email: val,
+                  email: answers.email ? answers.email : val,
+                });
+                if (errors.creator_email) {
+                  setErrors((prev) => ({ ...prev, creator_email: "" }));
+                }
               }}
-              columns={1}
             />
+            <p className="text-[11px] text-canvas-muted">
+              Where our creator partnership team should reach out with product seeding and collaboration details.
+            </p>
+            {errors.creator_email && (
+              <p className="text-xs font-medium text-red-600">{errors.creator_email}</p>
+            )}
+          </div>
+
+          {/* Gives & Takes Partnership Section */}
+          <div className="space-y-3 pt-2">
+            <h4 className="text-sm font-bold text-brand-dark">
+              Partnership Scope &amp; Expectations
+            </h4>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+              {/* Gives */}
+              <div className="p-4 rounded-xl border-2 border-emerald-200/90 bg-emerald-50/40 space-y-2 shadow-sm">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold uppercase tracking-wider">
+                  <Gift className="w-3.5 h-3.5" />
+                  <span>Gives</span>
+                </div>
+                <p className="text-xs sm:text-sm text-brand-dark/90 leading-relaxed font-medium">
+                  Build a meaningful partnership with TYTGEAR through exclusive creator opportunities, tailored benefits, and access to selected brand experiences. We aim to provide the right resources to support your content and creative direction.
+                </p>
+              </div>
+
+              {/* Takes */}
+              <div className="p-4 rounded-xl border-2 border-brand-200 bg-brand-50/40 space-y-2 shadow-sm">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand-100 text-brand-800 text-[11px] font-bold uppercase tracking-wider">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>Takes</span>
+                </div>
+                <p className="text-xs sm:text-sm text-brand-dark/90 leading-relaxed font-medium">
+                  In return, we look for authentic storytelling, consistent brand representation, and content that naturally connects TYTGEAR with your audience. Collaboration expectations will be aligned with your platform, content style, and the scope of each partnership.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Compulsory Terms & Guidelines Checkbox */}
+          <div className="space-y-1.5 pt-1">
+            <label
+              className={`flex items-start gap-3 p-4 rounded-xl border-2 transition-all cursor-pointer ${
+                answers.creator_terms_accepted
+                  ? "border-brand bg-brand-50/60 shadow-sm"
+                  : errors.creator_terms_accepted
+                  ? "border-red-300 bg-red-50/40"
+                  : "border-canvas-border bg-canvas-card hover:border-brand-200"
+              }`}
+            >
+              <input
+                type="checkbox"
+                checked={answers.creator_terms_accepted === true}
+                onChange={(e) => {
+                  updateAnswers({ creator_terms_accepted: e.target.checked });
+                  if (errors.creator_terms_accepted) {
+                    setErrors((prev) => ({ ...prev, creator_terms_accepted: "" }));
+                  }
+                }}
+                className="mt-0.5 w-4 h-4 text-brand rounded border-canvas-border focus:ring-brand cursor-pointer flex-shrink-0"
+              />
+              <div className="text-xs sm:text-sm text-brand-dark leading-snug">
+                <span>
+                  I have read and agree to the partnership expectations, creator terms, and collaboration guidelines outlined above.
+                </span>{" "}
+                <span className="text-red-500 font-bold">*</span>
+              </div>
+            </label>
+            {errors.creator_terms_accepted && (
+              <p className="text-xs font-medium text-red-600 pl-1">{errors.creator_terms_accepted}</p>
+            )}
           </div>
         </div>
       )}
@@ -252,3 +318,4 @@ export const Step13CreatorForm: React.FC = () => {
     </div>
   );
 };
+

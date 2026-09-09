@@ -94,11 +94,14 @@ type SurveySubmissionPayload struct {
 	ContactConsent bool   `json:"contact_consent,omitempty"`
 
 	// Section 10 - Creator / Ambassador Program (Optional)
-	IsCreator        *bool    `json:"is_creator,omitempty"`
-	CreatorPlatform  string   `json:"creator_platform,omitempty"`
-	CreatorHandle    string   `json:"creator_handle,omitempty"`
-	CreatorAudience  string   `json:"creator_audience,omitempty"`
-	CreatorCollabType []string `json:"creator_collab_type,omitempty"`
+	IsCreator            *bool    `json:"is_creator,omitempty"`
+	CreatorPlatform      string   `json:"creator_platform,omitempty"`
+	CreatorPlatforms     []string `json:"creator_platforms,omitempty"`
+	CreatorHandle        string   `json:"creator_handle,omitempty"`
+	CreatorAudience      string   `json:"creator_audience,omitempty"`
+	CreatorCollabType    []string `json:"creator_collab_type,omitempty"`
+	CreatorEmail         string   `json:"creator_email,omitempty"`
+	CreatorTermsAccepted *bool    `json:"creator_terms_accepted,omitempty"`
 }
 
 // SubmissionResponse represents the JSON response returned to the client

@@ -79,9 +79,12 @@ const validPayload = {
 
   is_creator: true,
   creator_platform: "YouTube",
+  creator_platforms: ["YouTube", "Instagram"],
   creator_handle: "@techandgaming",
   creator_audience: "5,000 – 25,000",
   creator_collab_type: ["Free review units & seed gear"],
+  creator_email: "creator@example.com",
+  creator_terms_accepted: true,
 };
 
 // Test 1: Baseline valid payload

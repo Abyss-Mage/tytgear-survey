@@ -73,11 +73,14 @@ func createValidPayload() *models.SurveySubmissionPayload {
 		Email:          "student@iitd.ac.in",
 		ContactConsent: true,
 
-		IsCreator:         &isCreator,
-		CreatorPlatform:   "YouTube",
-		CreatorHandle:     "@setupdiaries",
-		CreatorAudience:   "5,000 – 25,000",
-		CreatorCollabType: []string{"Free review units & seed gear"},
+		IsCreator:            &isCreator,
+		CreatorPlatform:      "YouTube",
+		CreatorPlatforms:     []string{"YouTube", "Instagram"},
+		CreatorHandle:        "@setupdiaries",
+		CreatorAudience:      "5,000 – 25,000",
+		CreatorCollabType:    []string{"Free review units & seed gear"},
+		CreatorEmail:         "alex.creator@example.com",
+		CreatorTermsAccepted: &isCreator,
 	}
 }
 
