@@ -38,14 +38,13 @@ export const Step8PricingLarge: React.FC = () => {
         title="TYTGEAR Large Hybrid Mousepad"
         category="Extended Desk Mat / Hybrid Surface"
         imageSrc="/images/mockups/largemousepad.webp"
-        thickness="4 mm"
         surface="Hybrid micro-weave (speed + stopping control)"
         base="Dense anti-slip textured natural rubber"
         edge="360° flush anti-fray micro-stitching"
         features={[
           "Full-desk coverage accommodating mechanical keyboard, mouse & desk gear",
           "Water-repellent nano coating resisting accidental liquid and beverage spills",
-          "Plush 4mm high-density core for all-day wrist support and comfort",
+          "Plush high-density core for all-day wrist support and comfort",
           "Cinematic high-contrast artwork print designed to elevate your setup",
         ]}
       />

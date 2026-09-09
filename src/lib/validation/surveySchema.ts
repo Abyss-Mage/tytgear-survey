@@ -184,10 +184,11 @@ export const SurveySubmissionSchema = z
   .refine(
     (data) => {
       if (data.is_creator) {
-        if (!data.creator_email || data.creator_email.trim().length === 0) {
+        const em = (data.creator_email || data.email || "").trim();
+        if (!em) {
           return false;
         }
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.creator_email.trim());
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em);
       }
       return true;
     },

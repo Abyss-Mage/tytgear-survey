@@ -17,7 +17,7 @@ interface ProductSpecProps {
   designs?: ProductDesign[];
   dimensions?: string;
   surface: string;
-  thickness: string;
+  thickness?: string;
   edge: string;
   base: string;
   features: string[];
@@ -104,17 +104,19 @@ export const ProductSpecCard: React.FC<ProductSpecProps> = ({
           </h3>
 
           {/* Key Specs Pills */}
-          <div className="grid grid-cols-2 gap-2 mt-3 text-xs text-brand-dark/90">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 text-xs text-brand-dark/90">
             {dimensions && (
               <div className="flex items-center gap-1.5">
                 <Maximize2 className="w-3.5 h-3.5 text-brand flex-shrink-0" />
                 <span><strong>Size:</strong> {dimensions}</span>
               </div>
             )}
-            <div className="flex items-center gap-1.5">
-              <Layers className="w-3.5 h-3.5 text-brand flex-shrink-0" />
-              <span><strong>Thickness:</strong> {thickness}</span>
-            </div>
+            {thickness && (
+              <div className="flex items-center gap-1.5">
+                <Layers className="w-3.5 h-3.5 text-brand flex-shrink-0" />
+                <span><strong>Thickness:</strong> {thickness}</span>
+              </div>
+            )}
             <div className="flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5 text-brand flex-shrink-0" />
               <span><strong>Surface:</strong> {surface}</span>
@@ -123,6 +125,12 @@ export const ProductSpecCard: React.FC<ProductSpecProps> = ({
               <Shield className="w-3.5 h-3.5 text-brand flex-shrink-0" />
               <span><strong>Base:</strong> {base}</span>
             </div>
+            {edge && (
+              <div className="flex items-center gap-1.5 sm:col-span-2">
+                <Layers className="w-3.5 h-3.5 text-brand flex-shrink-0" />
+                <span><strong>Edge / Finish:</strong> {edge}</span>
+              </div>
+            )}
           </div>
         </div>
       </div>

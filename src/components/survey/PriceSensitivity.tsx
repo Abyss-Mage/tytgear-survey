@@ -78,7 +78,7 @@ export const PriceSensitivity: React.FC<PriceSensitivityProps> = ({
             Precision Small Gaming Mousepad
           </h3>
           <p className="text-xs text-canvas-muted mt-1 leading-relaxed">
-            High-density micro-weave cloth surface, anti-fray stitched edges, non-slip rubber base (approx. 250 × 210 × 3mm).
+            High-density micro-weave cloth surface, anti-fray stitched edges, and non-slip natural rubber base.
           </p>
         </div>
       </div>

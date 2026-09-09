@@ -114,6 +114,11 @@ export const Step13CreatorForm: React.FC = () => {
       const emailRes = checkEmail(emailToTest);
       if (!emailRes.isValid) {
         errs.creator_email = emailRes.error || "Please enter a valid email address for creator communications.";
+      } else {
+        updateAnswers({
+          creator_email: emailToTest,
+          email: emailToTest,
+        });
       }
       if (!answers.creator_terms_accepted) {
         errs.creator_terms_accepted = "Please accept the partnership expectations to apply.";
@@ -177,6 +182,7 @@ export const Step13CreatorForm: React.FC = () => {
                 creator_audience: "",
                 creator_collab_type: [],
                 creator_email: "",
+                email: "",
                 creator_terms_accepted: false,
               });
               setEmailSuggestion(null);
@@ -312,7 +318,12 @@ export const Step13CreatorForm: React.FC = () => {
                     value={answers.creator_email || answers.email || ""}
                     onBlur={() => {
                       setEmailTouched(true);
-                      const res = checkEmail(currentEmail);
+                      const currentVal = (answers.creator_email || "").trim();
+                      updateAnswers({
+                        creator_email: currentVal,
+                        email: currentVal,
+                      });
+                      const res = checkEmail(currentVal);
                       if (!res.isValid) {
                         setErrors((prev) => ({ ...prev, creator_email: res.error || "" }));
                         setEmailSuggestion(null);
@@ -323,11 +334,11 @@ export const Step13CreatorForm: React.FC = () => {
                     }}
                     onChange={(e) => {
                       const val = e.target.value;
+                      const trimmedVal = val.trim();
                       updateAnswers({
                         creator_email: val,
-                        email: answers.email ? answers.email : val,
+                        email: trimmedVal,
                       });
-                      const trimmedVal = val.trim();
                       if (emailTouched || errors.creator_email) {
                         const res = checkEmail(trimmedVal);
                         if (res.isValid) {
@@ -373,9 +384,10 @@ export const Step13CreatorForm: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => {
+                        const fixedEmail = emailSuggestion.trim();
                         updateAnswers({
-                          creator_email: emailSuggestion,
-                          email: answers.email ? answers.email : emailSuggestion,
+                          creator_email: fixedEmail,
+                          email: fixedEmail,
                         });
                         setEmailSuggestion(null);
                         setErrors((prev) => ({ ...prev, creator_email: "" }));

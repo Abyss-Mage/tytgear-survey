@@ -38,7 +38,6 @@ export const Step10BudgetTapestry: React.FC = () => {
         title="TYTGEAR Aesthetic Wall Tapestries"
         category="Room Ambience & Setup Backdrop"
         imageSrc="/images/mockups/tapestries.webp"
-        thickness="Lightweight & Durable"
         surface="Silky woven microfiber polyester"
         base="Wrinkle-resistant hemmed edges"
         edge="Precision laser-cut & double-stitched"

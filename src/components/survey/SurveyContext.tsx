@@ -192,8 +192,11 @@ export const SurveyProvider: React.FC<{
       return false;
     }
 
+    const rawEmail = (answers.creator_email || answers.email || "").trim();
     const payload = {
       ...answers,
+      email: rawEmail ? rawEmail : undefined,
+      creator_email: answers.is_creator ? (rawEmail || undefined) : undefined,
       response_id: responseId,
       survey_version: SURVEY_VERSION,
       started_at: startedAt,

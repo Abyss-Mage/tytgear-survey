@@ -319,9 +319,10 @@ export function findFirstIncompleteStep(
         message: "Please select your estimated follower or club size.",
       };
     }
+    const contactEmail = (answers.creator_email || answers.email || "").trim();
     if (
-      !answers.creator_email ||
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(answers.creator_email.trim())
+      !contactEmail ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail)
     ) {
       return {
         step: 14,
