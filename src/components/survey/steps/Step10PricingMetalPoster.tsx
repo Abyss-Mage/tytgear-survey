@@ -38,7 +38,6 @@ export const Step10PricingMetalPoster: React.FC = () => {
         title="TYTGEAR Magnetic Metal Wall Art"
         category="Magnetic Metal Art Plate"
         imageSrc="/images/mockups/metalposter.webp"
-        dimensions="A3 / 12 × 18 inches (300 × 450 mm)"
         thickness="3 mm High-Grade Aluminum Composite"
         surface="High-gloss ultra-vibrant lacquer finish"
         base="Magnetic adhesive wall-mount system (No nails, no drilling)"

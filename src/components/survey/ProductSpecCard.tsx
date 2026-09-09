@@ -15,7 +15,7 @@ interface ProductSpecProps {
   category: string;
   imageSrc: string;
   designs?: ProductDesign[];
-  dimensions: string;
+  dimensions?: string;
   surface: string;
   thickness: string;
   edge: string;
@@ -83,9 +83,11 @@ export const ProductSpecCard: React.FC<ProductSpecProps> = ({
             className="object-cover transition-opacity duration-200"
             priority
           />
-          <span className="absolute bottom-2 left-2 text-[10px] font-bold bg-black/70 backdrop-blur-md text-white px-2 py-0.5 rounded shadow">
-            {dimensions}
-          </span>
+          {dimensions && (
+            <span className="absolute bottom-2 left-2 text-[10px] font-bold bg-black/70 backdrop-blur-md text-white px-2 py-0.5 rounded shadow">
+              {dimensions}
+            </span>
+          )}
           {activeDesignName && (
             <span className="absolute top-2 left-2 text-[10px] font-bold bg-brand-900/80 backdrop-blur-md text-white px-2 py-0.5 rounded shadow">
               {activeDesignName}
@@ -103,10 +105,12 @@ export const ProductSpecCard: React.FC<ProductSpecProps> = ({
 
           {/* Key Specs Pills */}
           <div className="grid grid-cols-2 gap-2 mt-3 text-xs text-brand-dark/90">
-            <div className="flex items-center gap-1.5">
-              <Maximize2 className="w-3.5 h-3.5 text-brand flex-shrink-0" />
-              <span><strong>Size:</strong> {dimensions}</span>
-            </div>
+            {dimensions && (
+              <div className="flex items-center gap-1.5">
+                <Maximize2 className="w-3.5 h-3.5 text-brand flex-shrink-0" />
+                <span><strong>Size:</strong> {dimensions}</span>
+              </div>
+            )}
             <div className="flex items-center gap-1.5">
               <Layers className="w-3.5 h-3.5 text-brand flex-shrink-0" />
               <span><strong>Thickness:</strong> {thickness}</span>

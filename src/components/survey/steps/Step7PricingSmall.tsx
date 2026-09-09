@@ -38,7 +38,6 @@ export const Step7PricingSmall: React.FC = () => {
         title="TYTGEAR Compact Precision Mousepad"
         category="Small Gaming Mousepad"
         imageSrc="/images/mockups/smallmousepad.webp"
-        dimensions="250 × 210 mm"
         thickness="3 mm"
         surface="High-density micro-weave cloth"
         base="Anti-slip natural textured rubber"

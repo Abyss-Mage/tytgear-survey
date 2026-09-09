@@ -26,7 +26,7 @@ export const Step8PricingLarge: React.FC = () => {
           Section 6 • Product Pricing (2 of 5)
         </span>
         <h2 className="text-xl sm:text-2xl font-bold text-brand-dark mt-1">
-          80×33 cm Large Hybrid Mousepad
+          Large Hybrid Mousepad
         </h2>
         <p className="text-xs sm:text-sm text-canvas-muted mt-1">
           Review the flagship specs and desk setup mockup below, then set your comfortable budget range for the extended desk mat.
@@ -35,10 +35,9 @@ export const Step8PricingLarge: React.FC = () => {
 
       {/* Product Spec Card */}
       <ProductSpecCard
-        title="TYTGEAR 80×33 cm Large Hybrid Mousepad"
+        title="TYTGEAR Large Hybrid Mousepad"
         category="Extended Desk Mat / Hybrid Surface"
         imageSrc="/images/mockups/largemousepad.webp"
-        dimensions="800 × 330 mm (80 × 33 cm)"
         thickness="4 mm"
         surface="Hybrid micro-weave (speed + stopping control)"
         base="Dense anti-slip textured natural rubber"
@@ -54,7 +53,7 @@ export const Step8PricingLarge: React.FC = () => {
       {/* Single Question & Slider for Budget Range */}
       <div className="space-y-3 pt-2">
         <BudgetRangeSlider
-          label="What budget range would you be willing to purchase this 80×33 cm Large Hybrid Mousepad within?"
+          label="What budget range would you be willing to purchase this Large Hybrid Mousepad within?"
           description="Drag the handles or select a preset to set the minimum and maximum price you would consider reasonable to pay."
           minValue={minVal}
           maxValue={maxVal}

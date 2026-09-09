@@ -38,7 +38,6 @@ export const Step9PricingFramedPoster: React.FC = () => {
         title="TYTGEAR Gallery Framed Wall Art"
         category="Framed Wall Decor"
         imageSrc="/images/mockups/framedposter.webp"
-        dimensions="A3 / 12 × 18 inches"
         thickness="20 mm Frame Profile Depth"
         surface="Ultra-clear shatterproof acrylic protection"
         base="Natural solid wood frame with sealed backing"

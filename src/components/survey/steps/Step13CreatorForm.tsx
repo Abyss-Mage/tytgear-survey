@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Sparkles, Gift } from "lucide-react";
+import { Sparkles, Gift, Mail, CheckCircle2, AlertCircle } from "lucide-react";
 import { SingleChoice } from "../SingleChoice";
 import { MultiChoice } from "../MultiChoice";
 import { Input } from "@/components/ui/Input";
@@ -26,9 +26,73 @@ const AUDIENCE_TIERS = [
   "100,000+",
 ];
 
+const EMAIL_TYPO_MAP: Record<string, string> = {
+  "gmial.com": "gmail.com",
+  "gamil.com": "gmail.com",
+  "gmai.com": "gmail.com",
+  "gmaill.com": "gmail.com",
+  "gmil.com": "gmail.com",
+  "gnail.com": "gmail.com",
+  "yaho.com": "yahoo.com",
+  "yahooo.com": "yahoo.com",
+  "hotmial.com": "hotmail.com",
+  "hotmaill.com": "hotmail.com",
+  "hotmil.com": "hotmail.com",
+  "outloo.com": "outlook.com",
+  "outlok.com": "outlook.com",
+  "iclud.com": "icloud.com",
+  "icoud.com": "icloud.com",
+};
+
+function checkEmail(val: string): { isValid: boolean; error: string | null; suggestion: string | null } {
+  const trimmed = val.trim();
+  if (!trimmed) {
+    return { isValid: false, error: "Please enter your official contact email.", suggestion: null };
+  }
+  if (/\s/.test(trimmed)) {
+    return { isValid: false, error: "Email address cannot contain spaces.", suggestion: null };
+  }
+  if (!trimmed.includes("@")) {
+    return { isValid: false, error: "Email must include an '@' symbol (e.g. name@domain.com).", suggestion: null };
+  }
+  const parts = trimmed.split("@");
+  if (parts.length > 2) {
+    return { isValid: false, error: "Email can only contain a single '@' symbol.", suggestion: null };
+  }
+  const [local, domain] = parts;
+  if (!local) {
+    return { isValid: false, error: "Please enter the username before the '@' symbol.", suggestion: null };
+  }
+  if (!domain) {
+    return { isValid: false, error: "Please enter the domain after the '@' symbol (e.g. @gmail.com).", suggestion: null };
+  }
+  if (!domain.includes(".")) {
+    return { isValid: false, error: "Domain must include an extension (e.g. .com, .in, .co).", suggestion: null };
+  }
+  const domainParts = domain.split(".");
+  const tld = domainParts[domainParts.length - 1];
+  if (tld.length < 2) {
+    return { isValid: false, error: "Domain extension is too short (e.g. .com, .in).", suggestion: null };
+  }
+  const rfcRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!rfcRegex.test(trimmed)) {
+    return { isValid: false, error: "Please enter a valid email format (e.g. name@domain.com).", suggestion: null };
+  }
+
+  const lowerDomain = domain.toLowerCase();
+  let suggestion: string | null = null;
+  if (EMAIL_TYPO_MAP[lowerDomain]) {
+    suggestion = `${local}@${EMAIL_TYPO_MAP[lowerDomain]}`;
+  }
+
+  return { isValid: true, error: null, suggestion };
+}
+
 export const Step13CreatorForm: React.FC = () => {
   const { answers, updateAnswers } = useSurvey();
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [emailSuggestion, setEmailSuggestion] = useState<string | null>(null);
+  const [emailTouched, setEmailTouched] = useState<boolean>(false);
 
   const validate = (): boolean => {
     const errs: Record<string, string> = {};
@@ -47,8 +111,9 @@ export const Step13CreatorForm: React.FC = () => {
         errs.creator_audience = "Please select your estimated follower or club size.";
       }
       const emailToTest = (answers.creator_email || answers.email || "").trim();
-      if (!emailToTest || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailToTest)) {
-        errs.creator_email = "Please enter a valid email address for creator communications.";
+      const emailRes = checkEmail(emailToTest);
+      if (!emailRes.isValid) {
+        errs.creator_email = emailRes.error || "Please enter a valid email address for creator communications.";
       }
       if (!answers.creator_terms_accepted) {
         errs.creator_terms_accepted = "Please accept the partnership expectations to apply.";
@@ -114,6 +179,8 @@ export const Step13CreatorForm: React.FC = () => {
                 creator_email: "",
                 creator_terms_accepted: false,
               });
+              setEmailSuggestion(null);
+              setEmailTouched(false);
               setErrors({});
             }}
             className={`p-4 rounded-xl border text-sm font-semibold transition-all text-left flex items-center justify-between cursor-pointer ${
@@ -214,57 +281,154 @@ export const Step13CreatorForm: React.FC = () => {
             )}
           </div>
 
-          {/* Creator Contact Email */}
-          <div className="space-y-2">
-            <label className="block text-sm font-bold text-brand-dark">
-              Creator Contact Email <span className="text-red-500">*</span>
-            </label>
-            <Input
-              type="email"
-              placeholder="e.g. yourchannel@gmail.com, creator@business.com"
-              value={answers.creator_email || answers.email || ""}
-              onChange={(e) => {
-                const val = e.target.value;
-                updateAnswers({
-                  creator_email: val,
-                  email: answers.email ? answers.email : val,
-                });
-                if (errors.creator_email) {
-                  setErrors((prev) => ({ ...prev, creator_email: "" }));
-                }
-              }}
-            />
-            <p className="text-[11px] text-canvas-muted">
-              Where our creator partnership team should reach out with product seeding and collaboration details.
-            </p>
-            {errors.creator_email && (
-              <p className="text-xs font-medium text-red-600">{errors.creator_email}</p>
-            )}
-          </div>
+          {/* Creator Contact Email with Advanced Validation & Typo Detection */}
+          {(() => {
+            const currentEmail = (answers.creator_email || answers.email || "").trim();
+            const isEmailValid =
+              currentEmail.length > 0 &&
+              /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(currentEmail);
 
-          {/* Gives & Takes Partnership Section */}
+            return (
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <label className="block text-sm font-bold text-brand-dark">
+                    Creator Contact Email <span className="text-red-500">*</span>
+                  </label>
+                  {isEmailValid && !errors.creator_email && (
+                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 animate-fadeIn">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                      Verified Format
+                    </span>
+                  )}
+                </div>
+
+                <div className="relative rounded-xl shadow-sm">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-canvas-muted">
+                    <Mail className="w-4 h-4" />
+                  </div>
+                  <input
+                    type="email"
+                    placeholder="e.g. yourchannel@gmail.com, creator@business.com"
+                    value={answers.creator_email || answers.email || ""}
+                    onBlur={() => {
+                      setEmailTouched(true);
+                      const res = checkEmail(currentEmail);
+                      if (!res.isValid) {
+                        setErrors((prev) => ({ ...prev, creator_email: res.error || "" }));
+                        setEmailSuggestion(null);
+                      } else {
+                        setErrors((prev) => ({ ...prev, creator_email: "" }));
+                        setEmailSuggestion(res.suggestion);
+                      }
+                    }}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      updateAnswers({
+                        creator_email: val,
+                        email: answers.email ? answers.email : val,
+                      });
+                      const trimmedVal = val.trim();
+                      if (emailTouched || errors.creator_email) {
+                        const res = checkEmail(trimmedVal);
+                        if (res.isValid) {
+                          setErrors((prev) => ({ ...prev, creator_email: "" }));
+                          setEmailSuggestion(res.suggestion);
+                        } else {
+                          setErrors((prev) => ({ ...prev, creator_email: res.error || "" }));
+                          setEmailSuggestion(null);
+                        }
+                      } else {
+                        const res = checkEmail(trimmedVal);
+                        if (res.isValid) {
+                          setEmailSuggestion(res.suggestion);
+                        } else {
+                          setEmailSuggestion(null);
+                        }
+                      }
+                    }}
+                    className={`block w-full rounded-xl border-2 transition-colors duration-150 py-3 pl-10 pr-10 text-sm text-brand-dark placeholder:text-canvas-muted bg-canvas-card focus:outline-none focus:ring-2 ${
+                      errors.creator_email
+                        ? "border-red-500 focus:border-red-500 focus:ring-red-200"
+                        : isEmailValid
+                        ? "border-emerald-500 focus:border-emerald-500 focus:ring-emerald-200"
+                        : "border-canvas-border hover:border-brand-300 focus:ring-brand focus:border-brand"
+                    }`}
+                  />
+                  {isEmailValid && !errors.creator_email && (
+                    <div className="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-emerald-600 animate-fadeIn">
+                      <CheckCircle2 className="w-4 h-4" />
+                    </div>
+                  )}
+                </div>
+
+                {/* Typo Auto-Suggestion Banner */}
+                {emailSuggestion && (
+                  <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-between gap-3 text-xs text-amber-900 animate-fadeIn shadow-sm">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm">💡</span>
+                      <span>
+                        Did you mean <strong className="font-bold underline text-amber-950">{emailSuggestion}</strong>?
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        updateAnswers({
+                          creator_email: emailSuggestion,
+                          email: answers.email ? answers.email : emailSuggestion,
+                        });
+                        setEmailSuggestion(null);
+                        setErrors((prev) => ({ ...prev, creator_email: "" }));
+                      }}
+                      className="px-3 py-1 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg text-xs transition-colors cursor-pointer flex-shrink-0 shadow-xs"
+                    >
+                      Apply Fix
+                    </button>
+                  </div>
+                )}
+
+                {errors.creator_email ? (
+                  <p className="text-xs font-medium text-red-600 flex items-center gap-1.5 animate-fadeIn">
+                    <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" />
+                    <span>{errors.creator_email}</span>
+                  </p>
+                ) : (
+                  <p className="text-[11px] text-canvas-muted">
+                    Where our creator partnership team should reach out with product seeding and collaboration details.
+                  </p>
+                )}
+              </div>
+            );
+          })()}
+
+          {/* Collaboration Framework & Mutual Commitments Section */}
           <div className="space-y-3 pt-2">
-            <h4 className="text-sm font-bold text-brand-dark">
-              Partnership Scope &amp; Expectations
-            </h4>
+            <div>
+              <h4 className="text-sm sm:text-base font-bold text-brand-dark">
+                Collaboration Framework &amp; Mutual Commitments
+              </h4>
+              <p className="text-xs text-canvas-muted mt-0.5">
+                Our mutual principles ensuring an authentic, high-impact creative partnership.
+              </p>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-              {/* Gives */}
+              {/* Brand Commitment & Support */}
               <div className="p-4 rounded-xl border-2 border-emerald-200/90 bg-emerald-50/40 space-y-2 shadow-sm">
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold uppercase tracking-wider">
                   <Gift className="w-3.5 h-3.5" />
-                  <span>Gives</span>
+                  <span>Brand Commitment &amp; Support</span>
                 </div>
                 <p className="text-xs sm:text-sm text-brand-dark/90 leading-relaxed font-medium">
                   Build a meaningful partnership with TYTGEAR through exclusive creator opportunities, tailored benefits, and access to selected brand experiences. We aim to provide the right resources to support your content and creative direction.
                 </p>
               </div>
 
-              {/* Takes */}
+              {/* Creator Representation & Deliverables */}
               <div className="p-4 rounded-xl border-2 border-brand-200 bg-brand-50/40 space-y-2 shadow-sm">
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand-100 text-brand-800 text-[11px] font-bold uppercase tracking-wider">
                   <Sparkles className="w-3.5 h-3.5" />
-                  <span>Takes</span>
+                  <span>Creator Representation &amp; Deliverables</span>
                 </div>
                 <p className="text-xs sm:text-sm text-brand-dark/90 leading-relaxed font-medium">
                   In return, we look for authentic storytelling, consistent brand representation, and content that naturally connects TYTGEAR with your audience. Collaboration expectations will be aligned with your platform, content style, and the scope of each partnership.
