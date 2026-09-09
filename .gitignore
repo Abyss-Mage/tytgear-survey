@@ -40,3 +40,9 @@ next-env.d.ts
 # go binaries
 server/bin/
 *.exe
+
+# credentials & keys
+*serviceaccount*.json
+tytgear-survey-*.json
+credentials*.json
+*.key.json
