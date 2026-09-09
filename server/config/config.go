@@ -2,6 +2,7 @@ package config
 
 import (
 	"bufio"
+	"encoding/json"
 	"os"
 	"path/filepath"
 	"strings"
@@ -32,6 +33,34 @@ func Load() *Config {
 		GooglePrivateKey:             os.Getenv("GOOGLE_PRIVATE_KEY"),
 		GoogleSheetID:                os.Getenv("GOOGLE_SHEET_ID"),
 		AllowLocalSubmissionFallback: os.Getenv("ALLOW_LOCAL_SUBMISSION_FALLBACK") == "true" || os.Getenv("NODE_ENV") != "production",
+	}
+
+	if cfg.GooglePrivateKey == "" || cfg.GoogleServiceAccountEmail == "" {
+		for _, dir := range []string{".", ".."} {
+			matches, _ := filepath.Glob(filepath.Join(dir, "tytgear-survey-*.json"))
+			if len(matches) > 0 {
+				data, err := os.ReadFile(matches[0])
+				if err == nil {
+					var sa struct {
+						ClientEmail string `json:"client_email"`
+						PrivateKey  string `json:"private_key"`
+					}
+					if err := json.Unmarshal(data, &sa); err == nil {
+						if cfg.GoogleServiceAccountEmail == "" {
+							cfg.GoogleServiceAccountEmail = sa.ClientEmail
+						}
+						if cfg.GooglePrivateKey == "" {
+							cfg.GooglePrivateKey = sa.PrivateKey
+						}
+					}
+				}
+				break
+			}
+		}
+	}
+
+	if cfg.GoogleSheetID == "" {
+		cfg.GoogleSheetID = "108RXZlR75IIwP2rkKvJuKsLlnHdxKeuLuN48-XLiHTg"
 	}
 
 	return cfg

@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { buildLeadRow } from "@/lib/google/sheets";
+import { buildLeadRow, appendLeadRowToSheets } from "@/lib/google/sheets";
 import { sendCouponEmail } from "@/lib/email/sendCoupon";
 import { GUARANTEED_DISCOUNT_CODE } from "@/config/survey";
 import fs from "fs";
 import path from "path";
-import { google } from "googleapis";
 
 export const runtime = "nodejs";
 
@@ -17,31 +16,6 @@ const ClaimRewardSchema = z.object({
   }),
   affiliation: z.string().optional(),
 });
-
-function appendLeadToGoogleSheets(leadRow: (string | boolean)[]) {
-  const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-  let privateKey = process.env.GOOGLE_PRIVATE_KEY;
-  const sheetId = process.env.GOOGLE_SHEET_ID;
-
-  if (!email || !privateKey || !sheetId) return false;
-
-  privateKey = privateKey.replace(/\\n/g, "\n");
-  const auth = new google.auth.JWT({
-    email,
-    key: privateKey,
-    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
-  });
-
-  const sheets = google.sheets({ version: "v4", auth });
-  return sheets.spreadsheets.values.append({
-    spreadsheetId: sheetId,
-    range: "Leads!A:H",
-    valueInputOption: "USER_ENTERED",
-    requestBody: {
-      values: [leadRow],
-    },
-  });
-}
 
 export async function POST(req: NextRequest) {
   try {
@@ -100,7 +74,7 @@ export async function POST(req: NextRequest) {
         "",      // platform
         "",      // handle
       ];
-      await appendLeadToGoogleSheets(leadRow);
+      await appendLeadRowToSheets(leadRow);
     } catch (e) {
       console.warn("Could not append lead to Google Sheets:", e);
     }

@@ -13,6 +13,20 @@ const { google } = require("googleapis");
 const fs = require("fs");
 const path = require("path");
 
+// Load credentials from tytgear-survey-fbe67a6314b6.json or other json if present
+const jsonFiles = fs.readdirSync(process.cwd()).filter(f => f.startsWith("tytgear-survey") && f.endsWith(".json"));
+if (jsonFiles.length > 0) {
+  try {
+    const credPath = path.join(process.cwd(), jsonFiles[0]);
+    const creds = JSON.parse(fs.readFileSync(credPath, "utf-8"));
+    if (creds.client_email) process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL = creds.client_email;
+    if (creds.private_key) process.env.GOOGLE_PRIVATE_KEY = creds.private_key;
+    console.log(`Loaded service account credentials from ${jsonFiles[0]}`);
+  } catch (e) {
+    console.warn("Could not read credentials from JSON:", e.message);
+  }
+}
+
 // Load .env.local if present
 const envLocalPath = path.join(process.cwd(), ".env.local");
 if (fs.existsSync(envLocalPath)) {
@@ -27,10 +41,16 @@ if (fs.existsSync(envLocalPath)) {
         if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
           val = val.slice(1, -1);
         }
-        process.env[key] = val;
+        if (!process.env[key]) {
+          process.env[key] = val;
+        }
       }
     }
   }
+}
+
+if (!process.env.GOOGLE_SHEET_ID) {
+  process.env.GOOGLE_SHEET_ID = "108RXZlR75IIwP2rkKvJuKsLlnHdxKeuLuN48-XLiHTg";
 }
 
 const RESPONSES_HEADERS = [
@@ -171,7 +191,7 @@ async function initializeSheet() {
     console.log(`Setting headers for ${tab.title}...`);
     await sheets.spreadsheets.values.update({
       spreadsheetId: sheetId,
-      range: `${tab.title}!A1:${String.fromCharCode(65 + Math.min(25, tab.headers.length - 1))}1`,
+      range: `${tab.title}!A1`,
       valueInputOption: "RAW",
       requestBody: {
         values: [tab.headers],

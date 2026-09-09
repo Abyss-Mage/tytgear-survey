@@ -170,10 +170,25 @@ export function buildLeadRow(
 /**
  * Initializes Google Sheets API authenticated client using service account credentials.
  */
-function getGoogleSheetsClient() {
-  const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+export function getGoogleSheetsClient() {
+  let email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
   let privateKey = process.env.GOOGLE_PRIVATE_KEY;
-  const sheetId = process.env.GOOGLE_SHEET_ID;
+  const sheetId = process.env.GOOGLE_SHEET_ID || "108RXZlR75IIwP2rkKvJuKsLlnHdxKeuLuN48-XLiHTg";
+
+  // If environment variables are not set, check for local service account JSON
+  if (!email || !privateKey) {
+    try {
+      const files = fs.readdirSync(process.cwd());
+      const keyFile = files.find((f) => f.startsWith("tytgear-survey") && f.endsWith(".json"));
+      if (keyFile) {
+        const creds = JSON.parse(fs.readFileSync(path.join(process.cwd(), keyFile), "utf-8"));
+        email = creds.client_email;
+        privateKey = creds.private_key;
+      }
+    } catch {
+      // Ignore file reading errors and proceed to check
+    }
+  }
 
   if (!email || !privateKey || !sheetId) {
     return null;
@@ -189,6 +204,24 @@ function getGoogleSheetsClient() {
 
   const sheets = google.sheets({ version: "v4", auth });
   return { sheets, sheetId };
+}
+
+/**
+ * Appends a lead row directly to the Leads tab in Google Sheets
+ */
+export async function appendLeadRowToSheets(leadRow: (string | boolean)[]) {
+  const clientInfo = getGoogleSheetsClient();
+  if (!clientInfo) return false;
+
+  const { sheets, sheetId } = clientInfo;
+  return sheets.spreadsheets.values.append({
+    spreadsheetId: sheetId,
+    range: "Leads!A:H",
+    valueInputOption: "USER_ENTERED",
+    requestBody: {
+      values: [leadRow],
+    },
+  });
 }
 
 /**
@@ -220,12 +253,10 @@ export async function appendSurveyResponse(
           ? JSON.parse(fs.readFileSync(filePath, "utf-8"))
           : [];
 
-        const row = buildResponseRow(data, metadata);
         existing.push({
-          response_id: data.response_id,
-          submitted_at: metadata.completed_at,
           data,
-          row_array: row,
+          metadata,
+          received_at: new Date().toISOString(),
         });
 
         fs.writeFileSync(filePath, JSON.stringify(existing, null, 2));
@@ -262,10 +293,10 @@ export async function appendSurveyResponse(
   try {
     const responseRow = buildResponseRow(data, metadata);
 
-    // 1. Append to Responses tab
+    // 1. Append to Responses tab (A:AZ covers all 52 columns)
     await sheets.spreadsheets.values.append({
       spreadsheetId: sheetId,
-      range: "Responses!A:AY",
+      range: "Responses!A:AZ",
       valueInputOption: "USER_ENTERED",
       requestBody: {
         values: [responseRow],
