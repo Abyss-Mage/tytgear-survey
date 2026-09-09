@@ -19,14 +19,6 @@ export const Step10BudgetTapestry: React.FC = () => {
     { label: "Premium Backdrop", min: 999, max: 1699 },
   ];
 
-  const tapestryDesigns = [
-    {
-      name: "Anime Legend Backdrop",
-      imageSrc: "/images/mockups/tapestries.webp",
-      tag: "Room Mockup",
-    },
-  ];
-
   return (
     <div className="space-y-8 animate-fadeIn">
       <div>
@@ -46,7 +38,6 @@ export const Step10BudgetTapestry: React.FC = () => {
         title="TYTGEAR Aesthetic Wall Tapestries"
         category="Room Ambience & Setup Backdrop"
         imageSrc="/images/mockups/tapestries.webp"
-        designs={tapestryDesigns}
         dimensions="150 × 100 cm (59 × 39 inches)"
         thickness="Lightweight & Durable"
         surface="Silky woven microfiber polyester"

@@ -19,19 +19,6 @@ export const Step8PricingLarge: React.FC = () => {
     { label: "Flagship Tier", min: 1599, max: 2299 },
   ];
 
-  const largePadDesigns = [
-    {
-      name: "Topographic Minimalist",
-      imageSrc: "/images/designs/design-a.webp",
-      tag: "Design A",
-    },
-    {
-      name: "Demon Slayer Serpent",
-      imageSrc: "/images/mockups/largemousepad.webp",
-      tag: "Design B",
-    },
-  ];
-
   return (
     <div className="space-y-8 animate-fadeIn">
       <div>
@@ -42,7 +29,7 @@ export const Step8PricingLarge: React.FC = () => {
           80×33 cm Large Hybrid Mousepad
         </h2>
         <p className="text-xs sm:text-sm text-canvas-muted mt-1">
-          Review the flagship specs and sample design mockups below, then set your comfortable budget range for the extended desk mat.
+          Review the flagship specs and desk setup mockup below, then set your comfortable budget range for the extended desk mat.
         </p>
       </div>
 
@@ -51,7 +38,6 @@ export const Step8PricingLarge: React.FC = () => {
         title="TYTGEAR 80×33 cm Large Hybrid Mousepad"
         category="Extended Desk Mat / Hybrid Surface"
         imageSrc="/images/mockups/largemousepad.webp"
-        designs={largePadDesigns}
         dimensions="800 × 330 mm (80 × 33 cm)"
         thickness="4 mm"
         surface="Hybrid micro-weave (speed + stopping control)"

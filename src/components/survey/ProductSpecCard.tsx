@@ -37,7 +37,7 @@ export const ProductSpecCard: React.FC<ProductSpecProps> = ({
 }) => {
   const [selectedDesignIdx, setSelectedDesignIdx] = React.useState(0);
   const activeImage = designs && designs.length > 0 ? designs[selectedDesignIdx].imageSrc : imageSrc;
-  const activeDesignName = designs && designs.length > 0 ? designs[selectedDesignIdx].name : null;
+  const activeDesignName = designs && designs.length > 1 ? designs[selectedDesignIdx].name : null;
 
   return (
     <div className="p-4 sm:p-6 rounded-2xl border-2 border-brand-200 bg-canvas-card shadow-sm space-y-4">

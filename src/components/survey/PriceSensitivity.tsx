@@ -63,7 +63,7 @@ export const PriceSensitivity: React.FC<PriceSensitivityProps> = ({
       <div className="p-4 sm:p-5 rounded-2xl border-2 border-canvas-border bg-canvas-card flex flex-col sm:flex-row items-center gap-4 sm:gap-6 shadow-sm">
         <div className="relative w-36 h-28 flex-shrink-0 bg-canvas-subtle rounded-xl overflow-hidden border border-canvas-border">
           <Image
-            src="/images/products/small-mousepad.webp"
+            src="/images/mockups/smallmousepad.webp"
             alt="TYTGEAR Small Mousepad"
             fill
             sizes="144px"

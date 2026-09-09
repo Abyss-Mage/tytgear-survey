@@ -19,14 +19,6 @@ export const Step10PricingMetalPoster: React.FC = () => {
     { label: "Flagship Metal", min: 1299, max: 2199 },
   ];
 
-  const metalDesigns = [
-    {
-      name: "Tengen River Stream",
-      imageSrc: "/images/mockups/metalposter.webp",
-      tag: "Metal Mockup",
-    },
-  ];
-
   return (
     <div className="space-y-8 animate-fadeIn">
       <div>
@@ -46,7 +38,6 @@ export const Step10PricingMetalPoster: React.FC = () => {
         title="TYTGEAR Magnetic Metal Wall Art"
         category="Magnetic Metal Art Plate"
         imageSrc="/images/mockups/metalposter.webp"
-        designs={metalDesigns}
         dimensions="A3 / 12 × 18 inches (300 × 450 mm)"
         thickness="3 mm High-Grade Aluminum Composite"
         surface="High-gloss ultra-vibrant lacquer finish"

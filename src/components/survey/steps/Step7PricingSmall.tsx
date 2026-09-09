@@ -19,19 +19,6 @@ export const Step7PricingSmall: React.FC = () => {
     { label: "High-End", min: 649, max: 899 },
   ];
 
-  const smallPadDesigns = [
-    {
-      name: "Topographic Minimalist",
-      imageSrc: "/images/products/small-mousepad.webp",
-      tag: "Design A",
-    },
-    {
-      name: "Marvel Comic Edition",
-      imageSrc: "/images/mockups/smallmousepad.webp",
-      tag: "Design B",
-    },
-  ];
-
   return (
     <div className="space-y-8 animate-fadeIn">
       <div>
@@ -42,7 +29,7 @@ export const Step7PricingSmall: React.FC = () => {
           Small Precision Mousepad
         </h2>
         <p className="text-xs sm:text-sm text-canvas-muted mt-1">
-          Review the detailed product specifications and sample design mockups below, then set your comfortable budget range.
+          Review the detailed product specifications and mockup below, then set your comfortable budget range.
         </p>
       </div>
 
@@ -51,7 +38,6 @@ export const Step7PricingSmall: React.FC = () => {
         title="TYTGEAR Compact Precision Mousepad"
         category="Small Gaming Mousepad"
         imageSrc="/images/mockups/smallmousepad.webp"
-        designs={smallPadDesigns}
         dimensions="250 × 210 mm"
         thickness="3 mm"
         surface="High-density micro-weave cloth"

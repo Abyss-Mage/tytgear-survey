@@ -19,14 +19,6 @@ export const Step9PricingFramedPoster: React.FC = () => {
     { label: "Collector Frame", min: 799, max: 1499 },
   ];
 
-  const framedDesigns = [
-    {
-      name: "Hinata Cherry Blossom",
-      imageSrc: "/images/mockups/framedposter.webp",
-      tag: "Framed Mockup",
-    },
-  ];
-
   return (
     <div className="space-y-8 animate-fadeIn">
       <div>
@@ -46,7 +38,6 @@ export const Step9PricingFramedPoster: React.FC = () => {
         title="TYTGEAR Gallery Framed Wall Art"
         category="Framed Wall Decor"
         imageSrc="/images/mockups/framedposter.webp"
-        designs={framedDesigns}
         dimensions="A3 / 12 × 18 inches"
         thickness="20 mm Frame Profile Depth"
         surface="Ultra-clear shatterproof acrylic protection"
