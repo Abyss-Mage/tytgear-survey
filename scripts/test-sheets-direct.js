@@ -43,13 +43,12 @@ async function testGoogleSheets() {
 
   const sheets = google.sheets({ version: "v4", auth });
 
-  // 1. Append a test response row
-  const testResponseId = `TEST-RESP-${Date.now()}`;
+  // 1. Append a test response row (45 columns)
+  const testResponseId = `TYT-2026-${Date.now().toString(36).toUpperCase()}`;
   const testResponseRow = [
     testResponseId,
-    "2.0",
-    new Date(Date.now() - 120000).toISOString(),
     new Date().toISOString(),
+    new Date(Date.now() - 120000).toISOString(),
     120,
     "Indian Institute of Technology Delhi (IIT Delhi)",
     "21–23",
@@ -61,7 +60,7 @@ async function testGoogleSheets() {
     "Gaming PC / Laptop",
     "Gaming setup",
     "Mousepad | Gaming mouse | Gaming keyboard",
-    "Mousepad",
+    "Within the last month",
     "Gaming Mousepad",
     "₹1,000 – ₹1,999",
     "Amazon / Flipkart",
@@ -74,21 +73,15 @@ async function testGoogleSheets() {
     "Low",
     "Large Desk Mat / Mousepad | Gaming Desk Accessories",
     "Anime / Manga Artwork | Cyberpunk / Sci-Fi / Tech",
-    "Anime / Manga Minimalist | Cyberpunk Neon Glitch",
-    "Cyberpunk Neon Glitch",
-    "199",
-    "399",
-    "699",
-    "999",
-    "499",
-    "799",
-    "1299",
-    "1999",
+    "₹299 – ₹499",
+    "₹699 – ₹1,199",
+    "₹249 – ₹449",
+    "₹499 – ₹899",
     "Extremely interested — would love to try them",
-    "Instagram",
+    "Instagram / Reels | YouTube / Shorts",
     "Behind-the-scenes / desk setup content",
-    "10% off launch discount",
-    "Definitely will",
+    "Flat launch discount (e.g. 20% off)",
+    9,
     "Yes",
     "tester@tytgear.com",
     "TRUE",
@@ -103,7 +96,7 @@ async function testGoogleSheets() {
   console.log("Appending test row to Responses tab...");
   const appendRes = await sheets.spreadsheets.values.append({
     spreadsheetId: sheetId,
-    range: "Responses!A:AZ",
+    range: "Responses!A:AS",
     valueInputOption: "USER_ENTERED",
     requestBody: {
       values: [testResponseRow],

@@ -4,69 +4,62 @@ import path from "path";
 import { SurveySubmissionInput } from "@/lib/validation/surveySchema";
 
 export const RESPONSES_HEADERS = [
-  "response_id",
-  "survey_version",
-  "timestamp_started",
-  "timestamp_completed",
-  "completion_time_seconds",
-  "affiliation",
-  "age",
-  "respondent_type",
-  "city",
-  "state",
-  "interests",
-  "gaming_frequency",
-  "platforms",
-  "setup_type",
-  "owned_products",
-  "last_purchase",
-  "recent_purchase",
-  "recent_spend",
-  "purchase_location",
-  "purchase_drivers",
-  "product_interest_small_mousepad",
-  "product_interest_large_mousepad",
-  "product_interest_desk_accessories",
-  "product_interest_tapestry",
-  "product_interest_posters",
-  "product_interest_mobile_covers",
-  "top_products",
-  "design_purchase_drivers",
-  "designs_appealing",
-  "design_most_likely_purchase",
-  "price_small_too_cheap",
-  "price_small_good_deal",
-  "price_small_expensive",
-  "price_small_too_expensive",
-  "price_large_too_cheap",
-  "price_large_good_deal",
-  "price_large_expensive",
-  "price_large_too_expensive",
-  "tytgear_interest",
-  "discovery_channels",
-  "content_preferences",
-  "launch_offer",
-  "purchase_intent",
-  "want_updates",
-  "email",
-  "contact_consent",
-  "is_creator",
-  "creator_platform",
-  "creator_handle",
-  "creator_audience",
-  "creator_collab_type",
-  "suspicious_response",
+  "Response ID",
+  "Submission Date & Time",
+  "Survey Start Time",
+  "Completion Time (Seconds)",
+  "College / University / Affiliation",
+  "Q1. Age Group",
+  "Q2. Which Best Describes You",
+  "Q3. City",
+  "Q4. State / UT",
+  "Q6. Interests",
+  "Q7. Gaming Frequency",
+  "Q8. Gaming Platforms",
+  "Q9. Desk / Setup Type",
+  "Q10. Products Currently Owned",
+  "Q11. Last Purchase Timing",
+  "Q12. Most Recent Product Purchased",
+  "Q13. Recent Spend Amount (₹)",
+  "Q14. Where Usually Purchased",
+  "Q15. Factors Influencing Purchase",
+  "Q16. Interest: Small Mousepad",
+  "Q16. Interest: Large Mousepad / Desk Mat",
+  "Q16. Interest: Gaming Desk Accessories",
+  "Q16. Interest: Anime / Gaming Tapestry",
+  "Q16. Interest: Posters & Prints",
+  "Q16. Interest: Mobile Covers & Accessories",
+  "Q17. Top Priority Products",
+  "Q18. What Makes Design Worth Purchasing",
+  "Q19. Small Mousepad Budget Range (₹)",
+  "Q20. Large Mousepad Budget Range (₹)",
+  "Q21. Poster Budget Range (₹)",
+  "Q22. Tapestry Budget Range (₹)",
+  "Q23. Interest in TYTGEAR Products",
+  "Q24. Where You Discover New Brands",
+  "Q25. Preferred Content Types",
+  "Q26. Preferred Launch Offer",
+  "Q27. Purchase Likelihood (0–10)",
+  "Wants Launch Updates & Early Access",
+  "Participant Email",
+  "Contact Consent Given",
+  "Is Content Creator / Streamer",
+  "Creator Primary Platform",
+  "Creator Handle / Channel Link",
+  "Creator Audience Size",
+  "Preferred Collaboration Types",
+  "Suspicious / Speedrun Flag",
 ];
 
 export const LEADS_HEADERS = [
-  "response_id",
-  "timestamp",
-  "affiliation",
-  "email",
-  "consent",
-  "is_creator",
-  "creator_platform",
-  "creator_handle",
+  "Response ID",
+  "Registered Date & Time",
+  "College / University / Affiliation",
+  "Email Address",
+  "Consent Confirmed",
+  "Is Content Creator?",
+  "Creator Platform",
+  "Creator Handle / Link",
 ];
 
 /**
@@ -75,6 +68,16 @@ export const LEADS_HEADERS = [
 function formatMulti(values?: string[]): string {
   if (!values || !Array.isArray(values) || values.length === 0) return "";
   return values.join(" | ");
+}
+
+/**
+ * Format budget min/max into readable currency range
+ */
+function formatBudgetRange(min?: number, max?: number): string {
+  if (min != null && max != null) return `₹${min} – ₹${max}`;
+  if (min != null) return `Min ₹${min}`;
+  if (max != null) return `Max ₹${max}`;
+  return "";
 }
 
 /**
@@ -93,9 +96,8 @@ export function buildResponseRow(
 
   return [
     data.response_id,
-    data.survey_version || "2.0",
-    data.started_at,
     metadata.completed_at,
+    data.started_at,
     metadata.completion_seconds,
     affiliation,
     data.age,
@@ -120,21 +122,15 @@ export function buildResponseRow(
     pi["mobile_covers"] || "",
     formatMulti(data.top_products),
     formatMulti(data.design_purchase_drivers),
-    formatMulti(data.designs_appealing),
-    data.design_most_likely_purchase || "",
-    data.price_small_too_cheap ?? "",
-    data.price_small_good_deal ?? "",
-    data.price_small_expensive ?? "",
-    data.price_small_too_expensive ?? "",
-    data.price_large_too_cheap ?? "",
-    data.price_large_good_deal ?? "",
-    data.price_large_expensive ?? "",
-    data.price_large_too_expensive ?? "",
+    formatBudgetRange(data.budget_small_mousepad_min, data.budget_small_mousepad_max),
+    formatBudgetRange(data.budget_large_mousepad_min, data.budget_large_mousepad_max),
+    formatBudgetRange(data.budget_poster_min, data.budget_poster_max),
+    formatBudgetRange(data.budget_tapestry_min, data.budget_tapestry_max),
     data.tytgear_interest,
     formatMulti(data.discovery_channels),
     formatMulti(data.content_preferences),
     data.launch_offer,
-    data.purchase_intent,
+    data.purchase_intent ?? "",
     data.want_updates || "No",
     data.email || "",
     data.contact_consent ? "TRUE" : "FALSE",
@@ -293,10 +289,10 @@ export async function appendSurveyResponse(
   try {
     const responseRow = buildResponseRow(data, metadata);
 
-    // 1. Append to Responses tab (A:AZ covers all 52 columns)
+    // 1. Append to Responses tab (A:AS covers all 45 columns)
     await sheets.spreadsheets.values.append({
       spreadsheetId: sheetId,
-      range: "Responses!A:AZ",
+      range: "Responses!A:AS",
       valueInputOption: "USER_ENTERED",
       requestBody: {
         values: [responseRow],

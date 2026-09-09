@@ -64,7 +64,7 @@ func AppendResponse(ctx context.Context, cfg *config.Config, p *models.SurveySub
 		Values: [][]interface{}{responseRow},
 	}
 
-	_, err = srv.Spreadsheets.Values.Append(cfg.GoogleSheetID, "Responses!A:AZ", vr).
+	_, err = srv.Spreadsheets.Values.Append(cfg.GoogleSheetID, "Responses!A:AS", vr).
 		ValueInputOption("USER_ENTERED").
 		Context(ctx).
 		Do()

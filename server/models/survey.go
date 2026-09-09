@@ -1,6 +1,7 @@
 package models
 
 import (
+	"fmt"
 	"strings"
 )
 
@@ -127,54 +128,21 @@ func FormatMulti(items []string) string {
 	return strings.Join(items, " | ")
 }
 
+func formatBudgetRange(min, max *float64) string {
+	if min != nil && max != nil {
+		return fmt.Sprintf("₹%.0f – ₹%.0f", *min, *max)
+	}
+	if min != nil {
+		return fmt.Sprintf("Min ₹%.0f", *min)
+	}
+	if max != nil {
+		return fmt.Sprintf("Max ₹%.0f", *max)
+	}
+	return ""
+}
+
 // BuildResponseRow creates the structured row slice for the Responses sheet tab
 func (p *SurveySubmissionPayload) BuildResponseRow(completedAt string, completionSeconds int, suspicious bool) []interface{} {
-	// Small mousepad prices
-	var pSmallTC, pSmallGD, pSmallExp, pSmallTooExp interface{} = "", "", "", ""
-	if p.PriceSmallTooCheap != nil {
-		pSmallTC = *p.PriceSmallTooCheap
-	} else if p.PriceTooCheap != nil {
-		pSmallTC = *p.PriceTooCheap
-	}
-	if p.BudgetSmallMousepadMin != nil {
-		pSmallGD = *p.BudgetSmallMousepadMin
-	} else if p.PriceSmallGoodDeal != nil {
-		pSmallGD = *p.PriceSmallGoodDeal
-	} else if p.PriceGoodDeal != nil {
-		pSmallGD = *p.PriceGoodDeal
-	}
-	if p.BudgetSmallMousepadMax != nil {
-		pSmallExp = *p.BudgetSmallMousepadMax
-	} else if p.PriceSmallExpensive != nil {
-		pSmallExp = *p.PriceSmallExpensive
-	} else if p.PriceExpensive != nil {
-		pSmallExp = *p.PriceExpensive
-	}
-	if p.PriceSmallTooExpensive != nil {
-		pSmallTooExp = *p.PriceSmallTooExpensive
-	} else if p.PriceTooExpensive != nil {
-		pSmallTooExp = *p.PriceTooExpensive
-	}
-
-	// Large mousepad prices
-	var pLargeTC, pLargeGD, pLargeExp, pLargeTooExp interface{} = "", "", "", ""
-	if p.PriceLargeTooCheap != nil {
-		pLargeTC = *p.PriceLargeTooCheap
-	}
-	if p.BudgetLargeMousepadMin != nil {
-		pLargeGD = *p.BudgetLargeMousepadMin
-	} else if p.PriceLargeGoodDeal != nil {
-		pLargeGD = *p.PriceLargeGoodDeal
-	}
-	if p.BudgetLargeMousepadMax != nil {
-		pLargeExp = *p.BudgetLargeMousepadMax
-	} else if p.PriceLargeExpensive != nil {
-		pLargeExp = *p.PriceLargeExpensive
-	}
-	if p.PriceLargeTooExpensive != nil {
-		pLargeTooExp = *p.PriceLargeTooExpensive
-	}
-
 	var purchaseIntent interface{} = ""
 	if p.PurchaseIntent != nil {
 		purchaseIntent = *p.PurchaseIntent
@@ -207,9 +175,8 @@ func (p *SurveySubmissionPayload) BuildResponseRow(completedAt string, completio
 
 	return []interface{}{
 		p.ResponseID,
-		p.SurveyVersion,
-		p.StartedAt,
 		completedAt,
+		p.StartedAt,
 		completionSeconds,
 		affiliation,
 		p.Age,
@@ -234,16 +201,10 @@ func (p *SurveySubmissionPayload) BuildResponseRow(completedAt string, completio
 		pi["mobile_covers"],
 		FormatMulti(p.TopProducts),
 		FormatMulti(p.DesignPurchaseDrivers),
-		FormatMulti(p.DesignsAppealing),
-		p.DesignMostLikelyPurchase,
-		pSmallTC,
-		pSmallGD,
-		pSmallExp,
-		pSmallTooExp,
-		pLargeTC,
-		pLargeGD,
-		pLargeExp,
-		pLargeTooExp,
+		formatBudgetRange(p.BudgetSmallMousepadMin, p.BudgetSmallMousepadMax),
+		formatBudgetRange(p.BudgetLargeMousepadMin, p.BudgetLargeMousepadMax),
+		formatBudgetRange(p.BudgetPosterMin, p.BudgetPosterMax),
+		formatBudgetRange(p.BudgetTapestryMin, p.BudgetTapestryMax),
 		p.TYTGearInterest,
 		FormatMulti(p.DiscoveryChannels),
 		FormatMulti(p.ContentPreferences),
