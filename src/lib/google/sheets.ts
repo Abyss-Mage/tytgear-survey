@@ -235,12 +235,129 @@ export function getGoogleSheetsClient() {
   return { sheets, sheetId };
 }
 
+// In-memory cache of registered emails to minimize Google Sheets API quota usage and provide instant lookups
+const registeredEmailsCache = new Set<string>();
+let lastEmailCacheFetch = 0;
+const EMAIL_CACHE_TTL_MS = 20 * 1000; // 20 seconds TTL
+
+export function recordEmailInCache(email?: string) {
+  if (email && typeof email === "string" && email.trim()) {
+    registeredEmailsCache.add(email.trim().toLowerCase());
+  }
+}
+
+/**
+ * Checks whether an email address has already been submitted or registered in Google Sheets (Leads or Coupons)
+ * or local fallback files.
+ */
+export async function isEmailAlreadyRegistered(email: string): Promise<boolean> {
+  const normalizedEmail = email.trim().toLowerCase();
+  if (!normalizedEmail) return false;
+
+  // 1. Check in-memory cache first
+  if (registeredEmailsCache.has(normalizedEmail)) {
+    return true;
+  }
+
+  // 2. Refresh cache from Google Sheets if TTL expired
+  const now = Date.now();
+  const clientInfo = getGoogleSheetsClient();
+
+  if (clientInfo && now - lastEmailCacheFetch > EMAIL_CACHE_TTL_MS) {
+    try {
+      const { sheets, sheetId } = clientInfo;
+      // Single batchGet call across all 3 sheets: Leads!D2:D, WooCommerce Coupons!D2:D, Responses!AL2:AL
+      const batchRes = await sheets.spreadsheets.values.batchGet({
+        spreadsheetId: sheetId,
+        ranges: ["Leads!D2:D", "WooCommerce Coupons!D2:D", "Responses!AL2:AL"],
+      });
+
+      if (batchRes.data.valueRanges && Array.isArray(batchRes.data.valueRanges)) {
+        for (const range of batchRes.data.valueRanges) {
+          if (range.values && Array.isArray(range.values)) {
+            for (const row of range.values) {
+              if (row[0] && typeof row[0] === "string" && row[0].trim()) {
+                registeredEmailsCache.add(row[0].trim().toLowerCase());
+              }
+            }
+          }
+        }
+      }
+
+      lastEmailCacheFetch = now;
+    } catch (err) {
+      console.warn("Could not query Google Sheets for registered emails:", err);
+    }
+  }
+
+  // Check cache again after refresh
+  if (registeredEmailsCache.has(normalizedEmail)) {
+    return true;
+  }
+
+  // 3. Check local fallback files if present (.data/leads.json, .data/coupons.json, .data/submissions.json)
+  try {
+    const dataDir = path.join(process.cwd(), ".data");
+    const leadsPath = path.join(dataDir, "leads.json");
+    if (fs.existsSync(leadsPath)) {
+      const leads = JSON.parse(fs.readFileSync(leadsPath, "utf-8"));
+      if (Array.isArray(leads)) {
+        for (const item of leads) {
+          const itemEmail = item.email || (Array.isArray(item) ? item[3] : "");
+          if (itemEmail && typeof itemEmail === "string") {
+            const norm = itemEmail.trim().toLowerCase();
+            registeredEmailsCache.add(norm);
+            if (norm === normalizedEmail) return true;
+          }
+        }
+      }
+    }
+
+    const couponsPath = path.join(dataDir, "coupons.json");
+    if (fs.existsSync(couponsPath)) {
+      const coupons = JSON.parse(fs.readFileSync(couponsPath, "utf-8"));
+      if (Array.isArray(coupons)) {
+        for (const item of coupons) {
+          const itemEmail = item.customer_email || (Array.isArray(item) ? item[3] : "");
+          if (itemEmail && typeof itemEmail === "string") {
+            const norm = itemEmail.trim().toLowerCase();
+            registeredEmailsCache.add(norm);
+            if (norm === normalizedEmail) return true;
+          }
+        }
+      }
+    }
+
+    const submissionsPath = path.join(dataDir, "submissions.json");
+    if (fs.existsSync(submissionsPath)) {
+      const subs = JSON.parse(fs.readFileSync(submissionsPath, "utf-8"));
+      if (Array.isArray(subs)) {
+        for (const item of subs) {
+          const itemEmail = item.data?.email || item.payload?.email || item.email || (Array.isArray(item) ? item[37] : "");
+          if (itemEmail && typeof itemEmail === "string") {
+            const norm = itemEmail.trim().toLowerCase();
+            registeredEmailsCache.add(norm);
+            if (norm === normalizedEmail) return true;
+          }
+        }
+      }
+    }
+  } catch (err) {
+    console.warn("Could not check local files for registered email:", err);
+  }
+
+  return registeredEmailsCache.has(normalizedEmail);
+}
+
 /**
  * Appends a lead row directly to the Leads tab in Google Sheets
  */
 export async function appendLeadRowToSheets(leadRow: (string | boolean)[]) {
   const clientInfo = getGoogleSheetsClient();
   if (!clientInfo) return false;
+
+  const emailVal = typeof leadRow[3] === "string" ? leadRow[3] : "";
+  recordEmailInCache(emailVal);
 
   const { sheets, sheetId } = clientInfo;
   return sheets.spreadsheets.values.append({
@@ -259,6 +376,9 @@ export async function appendLeadRowToSheets(leadRow: (string | boolean)[]) {
 export async function appendCouponRowToSheets(couponRow: (string | number)[]) {
   const clientInfo = getGoogleSheetsClient();
   if (!clientInfo) return false;
+
+  const emailVal = typeof couponRow[3] === "string" ? couponRow[3] : "";
+  recordEmailInCache(emailVal);
 
   const { sheets, sheetId } = clientInfo;
   return sheets.spreadsheets.values.append({
@@ -309,6 +429,7 @@ export async function appendSurveyResponse(
         fs.writeFileSync(filePath, JSON.stringify(existing, null, 2));
 
         if (data.want_updates === "Yes" && data.contact_consent && data.email) {
+          recordEmailInCache(data.email);
           const leadsPath = path.join(dataDir, "leads.json");
           const existingLeads: unknown[] = fs.existsSync(leadsPath)
             ? JSON.parse(fs.readFileSync(leadsPath, "utf-8"))
@@ -359,6 +480,7 @@ export async function appendSurveyResponse(
 
     // 2. If user consented to updates/giveaway, append to Leads & WooCommerce Coupons tabs
     if (data.want_updates === "Yes" && data.contact_consent && data.email) {
+      recordEmailInCache(data.email);
       const leadRow = buildLeadRow(data, metadata.completed_at);
       await sheets.spreadsheets.values.append({
         spreadsheetId: sheetId,

@@ -4,7 +4,7 @@ import {
   evaluateSubmissionSecurity,
   markSubmissionComplete,
 } from "@/lib/security/antiSpam";
-import { appendSurveyResponse } from "@/lib/google/sheets";
+import { appendSurveyResponse, isEmailAlreadyRegistered } from "@/lib/google/sheets";
 import { GUARANTEED_DISCOUNT_CODE } from "@/config/survey";
 
 export const runtime = "nodejs";
@@ -12,6 +12,27 @@ export const runtime = "nodejs";
 export async function POST(req: NextRequest) {
   try {
     const rawBody = await req.json();
+
+    // Check for duplicate email submission if email is present
+    if (
+      rawBody &&
+      typeof rawBody === "object" &&
+      rawBody.email &&
+      typeof rawBody.email === "string" &&
+      rawBody.email.trim().length > 0
+    ) {
+      const isEmailDupe = await isEmailAlreadyRegistered(rawBody.email);
+      if (isEmailDupe) {
+        return NextResponse.json(
+          {
+            success: false,
+            isDuplicate: true,
+            message: "A survey response or reward entry has already been registered with this email address. Only one entry per email address is permitted.",
+          },
+          { status: 409 }
+        );
+      }
+    }
 
     // 1. Primary: Auto-discover and forward to Go backend service across potential active ports
     const candidateUrls = [

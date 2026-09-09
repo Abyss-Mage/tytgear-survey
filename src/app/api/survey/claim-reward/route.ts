@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { buildLeadRow, appendLeadRowToSheets, buildCouponRow, appendCouponRowToSheets } from "@/lib/google/sheets";
+import {
+  buildLeadRow,
+  appendLeadRowToSheets,
+  buildCouponRow,
+  appendCouponRowToSheets,
+  isEmailAlreadyRegistered,
+  recordEmailInCache,
+} from "@/lib/google/sheets";
 import { sendCouponEmail } from "@/lib/email/sendCoupon";
 import { GUARANTEED_DISCOUNT_CODE } from "@/config/survey";
 import fs from "fs";
@@ -33,6 +40,21 @@ export async function POST(req: NextRequest) {
     }
 
     const { response_id, email, contact_consent, affiliation } = parseResult.data;
+    const normalizedEmail = email.trim().toLowerCase();
+
+    // Check for duplicate email registration
+    const isDuplicate = await isEmailAlreadyRegistered(normalizedEmail);
+    if (isDuplicate) {
+      return NextResponse.json(
+        {
+          success: false,
+          isDuplicate: true,
+          message: "This email address has already been registered for the launch discount and giveaway. Only one entry per email address is permitted.",
+        },
+        { status: 409 }
+      );
+    }
+
     const timestamp = new Date().toISOString();
 
     // 1. Record lead to local leads.json & coupons.json fallback
@@ -85,8 +107,10 @@ export async function POST(req: NextRequest) {
 
       const couponRow = buildCouponRow(response_id, email, timestamp);
       await appendCouponRowToSheets(couponRow);
+      recordEmailInCache(normalizedEmail);
     } catch (e) {
       console.warn("Could not append lead/coupon to Google Sheets:", e);
+      recordEmailInCache(normalizedEmail);
     }
 
     // 3. Dispatch discount coupon and giveaway entry email

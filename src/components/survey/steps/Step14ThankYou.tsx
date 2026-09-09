@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
-import { CheckCircle, Gift, Mail, ShieldCheck, Sparkles, RefreshCw, Send, Check } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { CheckCircle, Gift, Mail, ShieldCheck, Sparkles, RefreshCw, Send, Check, AlertCircle } from "lucide-react";
 import { useSurvey } from "../SurveyContext";
 import { Button } from "@/components/ui/Button";
+
+const CLAIMED_EMAIL_STORAGE_KEY = "tytgear_claimed_email";
 
 export const Step14ThankYou: React.FC = () => {
   const { responseId, answers, resetSurvey } = useSurvey();
@@ -13,12 +15,27 @@ export const Step14ThankYou: React.FC = () => {
   const [rewardClaimed, setRewardClaimed] = useState(false);
   const [claimedEmail, setClaimedEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isDuplicateError, setIsDuplicateError] = useState(false);
+
+  // Check if an email was already registered in this browser
+  useEffect(() => {
+    try {
+      const savedEmail = localStorage.getItem(CLAIMED_EMAIL_STORAGE_KEY);
+      if (savedEmail && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(savedEmail.trim())) {
+        setClaimedEmail(savedEmail.trim());
+        setRewardClaimed(true);
+      }
+    } catch {
+      // Ignore localStorage access errors
+    }
+  }, []);
 
   const isCreatorApplicant = answers.is_creator && !!answers.creator_handle;
 
   const handleClaimReward = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage(null);
+    setIsDuplicateError(false);
 
     const email = emailInput.trim();
     if (!email) {
@@ -50,7 +67,16 @@ export const Step14ThankYou: React.FC = () => {
 
       const data = await res.json();
       if (!res.ok || !data.success) {
+        if (res.status === 409 || data.isDuplicate) {
+          setIsDuplicateError(true);
+        }
         throw new Error(data.message || "Failed to submit email. Please try again.");
+      }
+
+      try {
+        localStorage.setItem(CLAIMED_EMAIL_STORAGE_KEY, email);
+      } catch {
+        // Ignore localStorage errors
       }
 
       setRewardClaimed(true);
@@ -164,7 +190,20 @@ export const Step14ThankYou: React.FC = () => {
             </label>
 
             {errorMessage && (
-              <p className="text-xs font-semibold text-red-600 animate-fadeIn">{errorMessage}</p>
+              <div
+                className={`p-3 rounded-xl border text-xs font-semibold animate-fadeIn flex items-start gap-2.5 ${
+                  isDuplicateError
+                    ? "bg-amber-50/90 border-amber-300 text-amber-900"
+                    : "bg-red-50 border-red-200 text-red-700"
+                }`}
+              >
+                <AlertCircle
+                  className={`w-4 h-4 flex-shrink-0 mt-0.5 ${
+                    isDuplicateError ? "text-amber-600" : "text-red-500"
+                  }`}
+                />
+                <span className="leading-relaxed">{errorMessage}</span>
+              </div>
             )}
 
             <Button
@@ -193,9 +232,23 @@ export const Step14ThankYou: React.FC = () => {
             <p className="text-xs text-brand-dark/80 leading-relaxed">
               We have recorded your email: <strong className="text-brand-dark">{claimedEmail}</strong>. Your exclusive <strong>20% launch discount code</strong> will be sent to your email by our team, and your entry into the <strong>80×33 cm Large Hybrid Mousepad Giveaway</strong> is officially confirmed!
             </p>
-            <div className="flex items-center gap-2 text-[11px] text-canvas-muted pt-1">
-              <Mail className="w-3.5 h-3.5 text-brand flex-shrink-0" />
-              <span>Please keep an eye on your inbox ahead of our late September 2026 launch.</span>
+            <div className="flex items-center justify-between pt-1 border-t border-brand-100 mt-2">
+              <div className="flex items-center gap-2 text-[11px] text-canvas-muted">
+                <Mail className="w-3.5 h-3.5 text-brand flex-shrink-0" />
+                <span>Keep an eye on your inbox ahead of late September 2026.</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setRewardClaimed(false);
+                  setEmailInput("");
+                  setErrorMessage(null);
+                  setIsDuplicateError(false);
+                }}
+                className="text-[10px] text-canvas-muted hover:text-brand underline cursor-pointer ml-2 flex-shrink-0"
+              >
+                Change email
+              </button>
             </div>
           </div>
         )}
