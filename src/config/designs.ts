@@ -1,0 +1,68 @@
+import { DesignInfo } from "@/types/survey";
+
+export const DESIGNS: DesignInfo[] = [
+  {
+    id: "design_a",
+    name: "Design A",
+    category: "Series 1",
+    image_url: "/images/designs/design-a.webp",
+    active: true,
+    display_order: 1,
+  },
+  {
+    id: "design_b",
+    name: "Design B",
+    category: "Series 1",
+    image_url: "/images/designs/design-b.webp",
+    active: true,
+    display_order: 2,
+  },
+  {
+    id: "design_c",
+    name: "Design C",
+    category: "Series 1",
+    image_url: "/images/designs/design-c.webp",
+    active: true,
+    display_order: 3,
+  },
+  {
+    id: "design_d",
+    name: "Design D",
+    category: "Series 1",
+    image_url: "/images/designs/design-d.webp",
+    active: true,
+    display_order: 4,
+  },
+  {
+    id: "design_e",
+    name: "Design E",
+    category: "Series 2",
+    image_url: "/images/designs/design-e.webp",
+    active: true,
+    display_order: 5,
+  },
+  {
+    id: "design_f",
+    name: "Design F",
+    category: "Series 2",
+    image_url: "/images/designs/design-f.webp",
+    active: true,
+    display_order: 6,
+  },
+  {
+    id: "design_g",
+    name: "Design G",
+    category: "Series 2",
+    image_url: "/images/designs/design-g.webp",
+    active: true,
+    display_order: 7,
+  },
+  {
+    id: "design_h",
+    name: "Design H",
+    category: "Series 2",
+    image_url: "/images/designs/design-h.webp",
+    active: true,
+    display_order: 8,
+  },
+];

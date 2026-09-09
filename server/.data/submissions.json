@@ -1,0 +1,2110 @@
+[
+  {
+    "completion_sec": 100,
+    "payload": {
+      "age": "18–20",
+      "city": "New Delhi",
+      "college_id": "IITD01",
+      "college_name": "IIT Delhi",
+      "contact_consent": true,
+      "contact_method": "Email",
+      "contact_value": "go_student@iitd.ac.in",
+      "content_preferences": [
+        "Setup transformations",
+        "Design process/artwork"
+      ],
+      "design_most_likely_display": "Design C",
+      "design_most_likely_purchase": "Design C",
+      "design_purchase_drivers": [
+        "Looks unique",
+        "Matches my personality"
+      ],
+      "designs_appealing": [
+        "Design A",
+        "Design C",
+        "Design F"
+      ],
+      "discovery_channels": [
+        "Instagram Reels",
+        "YouTube",
+        "Discord"
+      ],
+      "gaming_frequency": "Daily",
+      "important_attributes": [
+        "Design",
+        "Material quality",
+        "Durability"
+      ],
+      "interests": [
+        "Gaming",
+        "Esports",
+        "Room / Desk setup"
+      ],
+      "last_purchase": "1–3 months ago",
+      "launch_offer": "Early-access offer",
+      "owned_products": [
+        "Mousepad",
+        "Gaming mouse"
+      ],
+      "platforms": [
+        "Gaming PC",
+        "Mobile"
+      ],
+      "price_expensive": 699,
+      "price_good_deal": 399,
+      "price_too_cheap": 199,
+      "price_too_expensive": 1199,
+      "product_interests": {
+        "apparel": "Interested",
+        "bags": "Not interested",
+        "desk_accessories": "Neutral",
+        "desk_mat": "Very interested",
+        "large_mousepad": "Interested",
+        "mobile_cover": "Neutral",
+        "other": "Neutral",
+        "small_mousepad": "Very interested",
+        "tapestry": "Not very interested",
+        "wall_art": "Interested"
+      },
+      "purchase_drivers": [
+        "Design / appearance",
+        "Quality",
+        "Reviews"
+      ],
+      "purchase_intent": 9,
+      "purchase_location": [
+        "Amazon",
+        "Brand website"
+      ],
+      "purchase_problems": [
+        "Designs are repetitive",
+        "Too expensive"
+      ],
+      "recent_purchase": "Mousepad / desk mat",
+      "recent_spend": "₹1,000–1,999",
+      "respondent_type": "Undergraduate student",
+      "response_id": "TYT-2026-GO123456",
+      "setup_type": "Gaming setup",
+      "started_at": "2026-09-07T09:29:29.107Z",
+      "state": "Delhi",
+      "survey_version": "1.0",
+      "top_products": [
+        "Desk mats",
+        "Small mousepads",
+        "Apparel"
+      ],
+      "tytgear_interest": "Very interested",
+      "tytgear_trial_drivers": [
+        "Better designs",
+        "Unique/original products"
+      ],
+      "want_updates": "Yes"
+    },
+    "response_id": "TYT-2026-GO123456",
+    "row_array": [
+      "TYT-2026-GO123456",
+      "1.0",
+      "2026-09-07T09:29:29.107Z",
+      "2026-09-07T09:31:09Z",
+      100,
+      "IITD01",
+      "IIT Delhi",
+      "18–20",
+      "Undergraduate student",
+      "New Delhi",
+      "Delhi",
+      "Gaming | Esports | Room / Desk setup",
+      "Daily",
+      "Gaming PC | Mobile",
+      "Gaming setup",
+      "Mousepad | Gaming mouse",
+      "1–3 months ago",
+      "Mousepad / desk mat",
+      "₹1,000–1,999",
+      "Amazon | Brand website",
+      "Design / appearance | Quality | Reviews",
+      "Very interested",
+      "Interested",
+      "Very interested",
+      "Neutral",
+      "Not very interested",
+      "Interested",
+      "Neutral",
+      "Interested",
+      "Not interested",
+      "Neutral",
+      "Desk mats | Small mousepads | Apparel",
+      "Design | Material quality | Durability",
+      "Designs are repetitive | Too expensive",
+      "Design A | Design C | Design F",
+      "Design C",
+      "Design C",
+      "Looks unique | Matches my personality",
+      199,
+      399,
+      699,
+      1199,
+      "Very interested",
+      "Better designs | Unique/original products",
+      "Instagram Reels | YouTube | Discord",
+      "Setup transformations | Design process/artwork",
+      "Early-access offer",
+      9,
+      "TRUE",
+      "FALSE"
+    ],
+    "submitted_at": "2026-09-07T09:31:09Z",
+    "suspicious": false
+  },
+  {
+    "completion_sec": 100,
+    "payload": {
+      "age": "18–20",
+      "city": "New Delhi",
+      "college_id": "IITD01",
+      "college_name": "IIT Delhi",
+      "contact_consent": true,
+      "contact_method": "Email",
+      "contact_value": "go_student@iitd.ac.in",
+      "content_preferences": [
+        "Setup transformations",
+        "Design process/artwork"
+      ],
+      "design_most_likely_display": "Design C",
+      "design_most_likely_purchase": "Design C",
+      "design_purchase_drivers": [
+        "Looks unique",
+        "Matches my personality"
+      ],
+      "designs_appealing": [
+        "Design A",
+        "Design C",
+        "Design F"
+      ],
+      "discovery_channels": [
+        "Instagram Reels",
+        "YouTube",
+        "Discord"
+      ],
+      "gaming_frequency": "Daily",
+      "honeypot": "http://bot-site.com",
+      "important_attributes": [
+        "Design",
+        "Material quality",
+        "Durability"
+      ],
+      "interests": [
+        "Gaming",
+        "Esports",
+        "Room / Desk setup"
+      ],
+      "last_purchase": "1–3 months ago",
+      "launch_offer": "Early-access offer",
+      "owned_products": [
+        "Mousepad",
+        "Gaming mouse"
+      ],
+      "platforms": [
+        "Gaming PC",
+        "Mobile"
+      ],
+      "price_expensive": 699,
+      "price_good_deal": 399,
+      "price_too_cheap": 199,
+      "price_too_expensive": 1199,
+      "product_interests": {
+        "apparel": "Interested",
+        "bags": "Not interested",
+        "desk_accessories": "Neutral",
+        "desk_mat": "Very interested",
+        "large_mousepad": "Interested",
+        "mobile_cover": "Neutral",
+        "other": "Neutral",
+        "small_mousepad": "Very interested",
+        "tapestry": "Not very interested",
+        "wall_art": "Interested"
+      },
+      "purchase_drivers": [
+        "Design / appearance",
+        "Quality",
+        "Reviews"
+      ],
+      "purchase_intent": 9,
+      "purchase_location": [
+        "Amazon",
+        "Brand website"
+      ],
+      "purchase_problems": [
+        "Designs are repetitive",
+        "Too expensive"
+      ],
+      "recent_purchase": "Mousepad / desk mat",
+      "recent_spend": "₹1,000–1,999",
+      "respondent_type": "Undergraduate student",
+      "response_id": "TYT-2026-GOBOT999",
+      "setup_type": "Gaming setup",
+      "started_at": "2026-09-07T09:29:29.107Z",
+      "state": "Delhi",
+      "survey_version": "1.0",
+      "top_products": [
+        "Desk mats",
+        "Small mousepads",
+        "Apparel"
+      ],
+      "tytgear_interest": "Very interested",
+      "tytgear_trial_drivers": [
+        "Better designs",
+        "Unique/original products"
+      ],
+      "want_updates": "Yes"
+    },
+    "response_id": "TYT-2026-GOBOT999",
+    "row_array": [
+      "TYT-2026-GOBOT999",
+      "1.0",
+      "2026-09-07T09:29:29.107Z",
+      "2026-09-07T09:31:09Z",
+      100,
+      "IITD01",
+      "IIT Delhi",
+      "18–20",
+      "Undergraduate student",
+      "New Delhi",
+      "Delhi",
+      "Gaming | Esports | Room / Desk setup",
+      "Daily",
+      "Gaming PC | Mobile",
+      "Gaming setup",
+      "Mousepad | Gaming mouse",
+      "1–3 months ago",
+      "Mousepad / desk mat",
+      "₹1,000–1,999",
+      "Amazon | Brand website",
+      "Design / appearance | Quality | Reviews",
+      "Very interested",
+      "Interested",
+      "Very interested",
+      "Neutral",
+      "Not very interested",
+      "Interested",
+      "Neutral",
+      "Interested",
+      "Not interested",
+      "Neutral",
+      "Desk mats | Small mousepads | Apparel",
+      "Design | Material quality | Durability",
+      "Designs are repetitive | Too expensive",
+      "Design A | Design C | Design F",
+      "Design C",
+      "Design C",
+      "Looks unique | Matches my personality",
+      199,
+      399,
+      699,
+      1199,
+      "Very interested",
+      "Better designs | Unique/original products",
+      "Instagram Reels | YouTube | Discord",
+      "Setup transformations | Design process/artwork",
+      "Early-access offer",
+      9,
+      "TRUE",
+      "TRUE"
+    ],
+    "submitted_at": "2026-09-07T09:31:09Z",
+    "suspicious": true
+  },
+  {
+    "completion_sec": 149,
+    "payload": {
+      "age": "21–23",
+      "city": "faf",
+      "college_id": "OTHER",
+      "college_name": "Other / Not specified",
+      "content_preferences": [
+        "Setup transformations"
+      ],
+      "design_most_likely_display": "Design E",
+      "design_most_likely_purchase": "Design B",
+      "design_purchase_drivers": [
+        "Looks unique",
+        "Bold / eye-catching"
+      ],
+      "designs_appealing": [
+        "Design B"
+      ],
+      "discovery_channels": [
+        "Instagram"
+      ],
+      "gaming_frequency": "Rarely",
+      "important_attributes": [
+        "Design",
+        "Comfort"
+      ],
+      "interests": [
+        "Gaming",
+        "Technology / PC building",
+        "Movies / TV / Pop culture"
+      ],
+      "last_purchase": "7–12 months ago",
+      "launch_offer": "Buy 2 / bundle discount",
+      "owned_products": [
+        "Gaming mouse",
+        "Gaming keyboard",
+        "Gaming chair"
+      ],
+      "platforms": [
+        "Laptop",
+        "Nintendo Switch"
+      ],
+      "price_expensive": 312,
+      "price_good_deal": 310,
+      "price_too_cheap": 123,
+      "price_too_expensive": 331,
+      "product_interests": {
+        "apparel": "Neutral",
+        "bags": "Neutral",
+        "desk_accessories": "Neutral",
+        "desk_mat": "Neutral",
+        "large_mousepad": "Neutral",
+        "mobile_cover": "Neutral",
+        "other": "Neutral",
+        "small_mousepad": "Neutral",
+        "tapestry": "Neutral",
+        "wall_art": "Neutral"
+      },
+      "purchase_drivers": [
+        "Quality",
+        "Price"
+      ],
+      "purchase_intent": 5,
+      "purchase_location": [
+        "Flipkart",
+        "Brand website",
+        "Amazon"
+      ],
+      "purchase_problems": [
+        "Designs are repetitive",
+        "Cheap-looking designs"
+      ],
+      "recent_purchase": "Mousepad / desk mat",
+      "recent_spend": "Under ₹300",
+      "respondent_type": "Postgraduate student",
+      "response_id": "TYT-2026-W74FR5UE",
+      "setup_type": "Basic desk/laptop setup",
+      "started_at": "2026-09-07T18:45:06.086Z",
+      "state": "Kerala",
+      "survey_version": "1.0",
+      "top_products": [
+        "Small Mousepads",
+        "Large Mousepads",
+        "Desk Mats"
+      ],
+      "tytgear_interest": "Very interested",
+      "tytgear_trial_drivers": [
+        "Better designs"
+      ],
+      "want_updates": "No"
+    },
+    "response_id": "TYT-2026-W74FR5UE",
+    "row_array": [
+      "TYT-2026-W74FR5UE",
+      "1.0",
+      "2026-09-07T18:45:06.086Z",
+      "2026-09-07T18:47:35Z",
+      149,
+      "OTHER",
+      "Other / Not specified",
+      "21–23",
+      "Postgraduate student",
+      "faf",
+      "Kerala",
+      "Gaming | Technology / PC building | Movies / TV / Pop culture",
+      "Rarely",
+      "Laptop | Nintendo Switch",
+      "Basic desk/laptop setup",
+      "Gaming mouse | Gaming keyboard | Gaming chair",
+      "7–12 months ago",
+      "Mousepad / desk mat",
+      "Under ₹300",
+      "Flipkart | Brand website | Amazon",
+      "Quality | Price",
+      "Neutral",
+      "Neutral",
+      "Neutral",
+      "Neutral",
+      "Neutral",
+      "Neutral",
+      "Neutral",
+      "Neutral",
+      "Neutral",
+      "Neutral",
+      "Small Mousepads | Large Mousepads | Desk Mats",
+      "Design | Comfort",
+      "Designs are repetitive | Cheap-looking designs",
+      "Design B",
+      "Design B",
+      "Design E",
+      "Looks unique | Bold / eye-catching",
+      123,
+      310,
+      312,
+      331,
+      "Very interested",
+      "Better designs",
+      "Instagram",
+      "Setup transformations",
+      "Buy 2 / bundle discount",
+      5,
+      "FALSE",
+      "FALSE"
+    ],
+    "submitted_at": "2026-09-07T18:47:35Z",
+    "suspicious": false
+  },
+  {
+    "completion_sec": 100,
+    "payload": {
+      "affiliation": "IIT Delhi",
+      "age": "18–20",
+      "city": "New Delhi",
+      "contact_consent": true,
+      "content_preferences": [
+        "Setup inspiration \u0026 desk tours",
+        "Behind-the-scenes / manufacturing process"
+      ],
+      "creator_audience": "5,000 – 25,000",
+      "creator_collab_type": [
+        "Free review units \u0026 seed gear"
+      ],
+      "creator_handle": "@gocreator",
+      "creator_platform": "YouTube",
+      "design_most_likely_purchase": "Design C",
+      "design_purchase_drivers": [
+        "Looks unique / Premium",
+        "Matches my personality"
+      ],
+      "designs_appealing": [
+        "Design A",
+        "Design C",
+        "Design F"
+      ],
+      "discovery_channels": [
+        "Instagram / Reels",
+        "YouTube / Shorts",
+        "Discord Communities"
+      ],
+      "email": "go_student@iitd.ac.in",
+      "gaming_frequency": "Daily",
+      "interests": [
+        "Gaming",
+        "Esports",
+        "Room / Desk Setup"
+      ],
+      "is_creator": true,
+      "last_purchase": "1–3 months ago",
+      "launch_offer": "Flat launch discount (e.g. 20% off)",
+      "owned_products": [
+        "Mousepad",
+        "Gaming mouse"
+      ],
+      "platforms": [
+        "Gaming PC / Laptop",
+        "Mobile"
+      ],
+      "price_large_expensive": 1499,
+      "price_large_good_deal": 899,
+      "price_large_too_cheap": 499,
+      "price_large_too_expensive": 2199,
+      "price_small_expensive": 599,
+      "price_small_good_deal": 349,
+      "price_small_too_cheap": 199,
+      "price_small_too_expensive": 899,
+      "product_interests": {
+        "desk_accessories": "Neutral",
+        "large_mousepad": "Interested",
+        "mobile_covers": "Neutral",
+        "posters": "Interested",
+        "small_mousepad": "Very interested",
+        "tapestry": "Not very interested"
+      },
+      "purchase_drivers": [
+        "Design / aesthetics",
+        "Build quality",
+        "Reviews / ratings"
+      ],
+      "purchase_intent": 9,
+      "purchase_location": [
+        "Amazon",
+        "Brand website"
+      ],
+      "recent_purchase": "Mousepad / desk mat",
+      "recent_spend": "₹1,000–₹1,999",
+      "respondent_type": "Undergraduate student",
+      "response_id": "TYT-2026-GOYLXO9W",
+      "setup_type": "Gaming setup",
+      "started_at": "2026-09-08T17:27:00.281Z",
+      "state": "Delhi",
+      "survey_version": "2.0",
+      "top_products": [
+        "Small Mousepads",
+        "Large Mousepads",
+        "Posters"
+      ],
+      "tytgear_interest": "Very interested",
+      "want_updates": "Yes"
+    },
+    "response_id": "TYT-2026-GOYLXO9W",
+    "row_array": [
+      "TYT-2026-GOYLXO9W",
+      "2.0",
+      "2026-09-08T17:27:00.281Z",
+      "2026-09-08T17:28:40Z",
+      100,
+      "IIT Delhi",
+      "18–20",
+      "Undergraduate student",
+      "New Delhi",
+      "Delhi",
+      "Gaming | Esports | Room / Desk Setup",
+      "Daily",
+      "Gaming PC / Laptop | Mobile",
+      "Gaming setup",
+      "Mousepad | Gaming mouse",
+      "1–3 months ago",
+      "Mousepad / desk mat",
+      "₹1,000–₹1,999",
+      "Amazon | Brand website",
+      "Design / aesthetics | Build quality | Reviews / ratings",
+      "Very interested",
+      "Interested",
+      "Neutral",
+      "Not very interested",
+      "Interested",
+      "Neutral",
+      "Small Mousepads | Large Mousepads | Posters",
+      "Looks unique / Premium | Matches my personality",
+      "Design A | Design C | Design F",
+      "Design C",
+      199,
+      349,
+      599,
+      899,
+      499,
+      899,
+      1499,
+      2199,
+      "Very interested",
+      "Instagram / Reels | YouTube / Shorts | Discord Communities",
+      "Setup inspiration \u0026 desk tours | Behind-the-scenes / manufacturing process",
+      "Flat launch discount (e.g. 20% off)",
+      9,
+      "Yes",
+      "go_student@iitd.ac.in",
+      "TRUE",
+      "TRUE",
+      "YouTube",
+      "@gocreator",
+      "5,000 – 25,000",
+      "Free review units \u0026 seed gear",
+      "FALSE"
+    ],
+    "submitted_at": "2026-09-08T17:28:40Z",
+    "suspicious": false
+  },
+  {
+    "completion_sec": 125,
+    "payload": {
+      "affiliation": "IIT Delhi",
+      "age": "18–20",
+      "city": "New Delhi",
+      "contact_consent": true,
+      "content_preferences": [
+        "Setup inspiration \u0026 desk tours",
+        "Behind-the-scenes / manufacturing process"
+      ],
+      "creator_audience": "5,000 – 25,000",
+      "creator_collab_type": [
+        "Free review units \u0026 seed gear"
+      ],
+      "creator_handle": "@techandgaming",
+      "creator_platform": "YouTube",
+      "design_most_likely_purchase": "Design C",
+      "design_purchase_drivers": [
+        "Looks unique / Premium",
+        "Matches my personality"
+      ],
+      "designs_appealing": [
+        "Design A",
+        "Design C",
+        "Design F"
+      ],
+      "discovery_channels": [
+        "Instagram / Reels",
+        "YouTube / Shorts",
+        "Discord Communities"
+      ],
+      "email": "student@iitd.ac.in",
+      "gaming_frequency": "Daily",
+      "interests": [
+        "Gaming",
+        "Esports",
+        "Room / Desk Setup"
+      ],
+      "is_creator": true,
+      "last_purchase": "1–3 months ago",
+      "launch_offer": "Flat launch discount (e.g. 20% off)",
+      "owned_products": [
+        "Mousepad",
+        "Gaming mouse",
+        "Gaming headset"
+      ],
+      "platforms": [
+        "Gaming PC / Laptop",
+        "Mobile"
+      ],
+      "price_large_expensive": 1499,
+      "price_large_good_deal": 899,
+      "price_large_too_cheap": 499,
+      "price_large_too_expensive": 2199,
+      "price_small_expensive": 599,
+      "price_small_good_deal": 349,
+      "price_small_too_cheap": 199,
+      "price_small_too_expensive": 899,
+      "product_interests": {
+        "desk_accessories": "Neutral",
+        "large_mousepad": "Interested",
+        "mobile_covers": "Neutral",
+        "posters": "Interested",
+        "small_mousepad": "Very interested",
+        "tapestry": "Not very interested"
+      },
+      "purchase_drivers": [
+        "Design / aesthetics",
+        "Build quality",
+        "Reviews / ratings"
+      ],
+      "purchase_intent": 9,
+      "purchase_location": [
+        "Amazon",
+        "Brand website"
+      ],
+      "recent_purchase": "Mousepad / desk mat",
+      "recent_spend": "₹1,000–₹1,999",
+      "respondent_type": "Undergraduate student",
+      "response_id": "TYT-2026-N7K2V9B3",
+      "setup_type": "Gaming setup",
+      "started_at": "2026-09-08T17:27:02.767Z",
+      "state": "Delhi",
+      "survey_version": "2.0",
+      "top_products": [
+        "Small Mousepads",
+        "Large Mousepads",
+        "Posters"
+      ],
+      "tytgear_interest": "Very interested",
+      "want_updates": "Yes"
+    },
+    "response_id": "TYT-2026-N7K2V9B3",
+    "row_array": [
+      "TYT-2026-N7K2V9B3",
+      "2.0",
+      "2026-09-08T17:27:02.767Z",
+      "2026-09-08T17:29:08Z",
+      125,
+      "IIT Delhi",
+      "18–20",
+      "Undergraduate student",
+      "New Delhi",
+      "Delhi",
+      "Gaming | Esports | Room / Desk Setup",
+      "Daily",
+      "Gaming PC / Laptop | Mobile",
+      "Gaming setup",
+      "Mousepad | Gaming mouse | Gaming headset",
+      "1–3 months ago",
+      "Mousepad / desk mat",
+      "₹1,000–₹1,999",
+      "Amazon | Brand website",
+      "Design / aesthetics | Build quality | Reviews / ratings",
+      "Very interested",
+      "Interested",
+      "Neutral",
+      "Not very interested",
+      "Interested",
+      "Neutral",
+      "Small Mousepads | Large Mousepads | Posters",
+      "Looks unique / Premium | Matches my personality",
+      "Design A | Design C | Design F",
+      "Design C",
+      199,
+      349,
+      599,
+      899,
+      499,
+      899,
+      1499,
+      2199,
+      "Very interested",
+      "Instagram / Reels | YouTube / Shorts | Discord Communities",
+      "Setup inspiration \u0026 desk tours | Behind-the-scenes / manufacturing process",
+      "Flat launch discount (e.g. 20% off)",
+      9,
+      "Yes",
+      "student@iitd.ac.in",
+      "TRUE",
+      "TRUE",
+      "YouTube",
+      "@techandgaming",
+      "5,000 – 25,000",
+      "Free review units \u0026 seed gear",
+      "FALSE"
+    ],
+    "submitted_at": "2026-09-08T17:29:08Z",
+    "suspicious": false
+  },
+  {
+    "completion_sec": 125,
+    "payload": {
+      "affiliation": "IIT Delhi",
+      "age": "18–20",
+      "city": "New Delhi",
+      "contact_consent": true,
+      "content_preferences": [
+        "Setup inspiration \u0026 desk tours",
+        "Behind-the-scenes / manufacturing process"
+      ],
+      "creator_audience": "5,000 – 25,000",
+      "creator_collab_type": [
+        "Free review units \u0026 seed gear"
+      ],
+      "creator_handle": "@techandgaming",
+      "creator_platform": "YouTube",
+      "design_most_likely_purchase": "Design C",
+      "design_purchase_drivers": [
+        "Looks unique / Premium",
+        "Matches my personality"
+      ],
+      "designs_appealing": [
+        "Design A",
+        "Design C",
+        "Design F"
+      ],
+      "discovery_channels": [
+        "Instagram / Reels",
+        "YouTube / Shorts",
+        "Discord Communities"
+      ],
+      "email": "student@iitd.ac.in",
+      "gaming_frequency": "Daily",
+      "honeypot": "I am a spammer bot",
+      "interests": [
+        "Gaming",
+        "Esports",
+        "Room / Desk Setup"
+      ],
+      "is_creator": true,
+      "last_purchase": "1–3 months ago",
+      "launch_offer": "Flat launch discount (e.g. 20% off)",
+      "owned_products": [
+        "Mousepad",
+        "Gaming mouse",
+        "Gaming headset"
+      ],
+      "platforms": [
+        "Gaming PC / Laptop",
+        "Mobile"
+      ],
+      "price_large_expensive": 1499,
+      "price_large_good_deal": 899,
+      "price_large_too_cheap": 499,
+      "price_large_too_expensive": 2199,
+      "price_small_expensive": 599,
+      "price_small_good_deal": 349,
+      "price_small_too_cheap": 199,
+      "price_small_too_expensive": 899,
+      "product_interests": {
+        "desk_accessories": "Neutral",
+        "large_mousepad": "Interested",
+        "mobile_covers": "Neutral",
+        "posters": "Interested",
+        "small_mousepad": "Very interested",
+        "tapestry": "Not very interested"
+      },
+      "purchase_drivers": [
+        "Design / aesthetics",
+        "Build quality",
+        "Reviews / ratings"
+      ],
+      "purchase_intent": 9,
+      "purchase_location": [
+        "Amazon",
+        "Brand website"
+      ],
+      "recent_purchase": "Mousepad / desk mat",
+      "recent_spend": "₹1,000–₹1,999",
+      "respondent_type": "Undergraduate student",
+      "response_id": "TYT-2026-BOT99999",
+      "setup_type": "Gaming setup",
+      "started_at": "2026-09-08T17:27:02.767Z",
+      "state": "Delhi",
+      "survey_version": "2.0",
+      "top_products": [
+        "Small Mousepads",
+        "Large Mousepads",
+        "Posters"
+      ],
+      "tytgear_interest": "Very interested",
+      "want_updates": "Yes"
+    },
+    "response_id": "TYT-2026-BOT99999",
+    "row_array": [
+      "TYT-2026-BOT99999",
+      "2.0",
+      "2026-09-08T17:27:02.767Z",
+      "2026-09-08T17:29:08Z",
+      125,
+      "IIT Delhi",
+      "18–20",
+      "Undergraduate student",
+      "New Delhi",
+      "Delhi",
+      "Gaming | Esports | Room / Desk Setup",
+      "Daily",
+      "Gaming PC / Laptop | Mobile",
+      "Gaming setup",
+      "Mousepad | Gaming mouse | Gaming headset",
+      "1–3 months ago",
+      "Mousepad / desk mat",
+      "₹1,000–₹1,999",
+      "Amazon | Brand website",
+      "Design / aesthetics | Build quality | Reviews / ratings",
+      "Very interested",
+      "Interested",
+      "Neutral",
+      "Not very interested",
+      "Interested",
+      "Neutral",
+      "Small Mousepads | Large Mousepads | Posters",
+      "Looks unique / Premium | Matches my personality",
+      "Design A | Design C | Design F",
+      "Design C",
+      199,
+      349,
+      599,
+      899,
+      499,
+      899,
+      1499,
+      2199,
+      "Very interested",
+      "Instagram / Reels | YouTube / Shorts | Discord Communities",
+      "Setup inspiration \u0026 desk tours | Behind-the-scenes / manufacturing process",
+      "Flat launch discount (e.g. 20% off)",
+      9,
+      "Yes",
+      "student@iitd.ac.in",
+      "TRUE",
+      "TRUE",
+      "YouTube",
+      "@techandgaming",
+      "5,000 – 25,000",
+      "Free review units \u0026 seed gear",
+      "TRUE"
+    ],
+    "submitted_at": "2026-09-08T17:29:08Z",
+    "suspicious": true
+  },
+  {
+    "completion_sec": 100,
+    "payload": {
+      "affiliation": "IIT Delhi",
+      "age": "18–20",
+      "city": "New Delhi",
+      "contact_consent": true,
+      "content_preferences": [
+        "Setup inspiration \u0026 desk tours",
+        "Behind-the-scenes / manufacturing process"
+      ],
+      "creator_audience": "5,000 – 25,000",
+      "creator_collab_type": [
+        "Free review units \u0026 seed gear"
+      ],
+      "creator_handle": "@gocreator",
+      "creator_platform": "YouTube",
+      "design_most_likely_purchase": "Design C",
+      "design_purchase_drivers": [
+        "Looks unique / Premium",
+        "Matches my personality"
+      ],
+      "designs_appealing": [
+        "Design A",
+        "Design C",
+        "Design F"
+      ],
+      "discovery_channels": [
+        "Instagram / Reels",
+        "YouTube / Shorts",
+        "Discord Communities"
+      ],
+      "email": "go_student@iitd.ac.in",
+      "gaming_frequency": "Daily",
+      "interests": [
+        "Gaming",
+        "Esports",
+        "Room / Desk Setup"
+      ],
+      "is_creator": true,
+      "last_purchase": "1–3 months ago",
+      "launch_offer": "Flat launch discount (e.g. 20% off)",
+      "owned_products": [
+        "Mousepad",
+        "Gaming mouse"
+      ],
+      "platforms": [
+        "Gaming PC / Laptop",
+        "Mobile"
+      ],
+      "price_large_expensive": 1499,
+      "price_large_good_deal": 899,
+      "price_large_too_cheap": 499,
+      "price_large_too_expensive": 2199,
+      "price_small_expensive": 599,
+      "price_small_good_deal": 349,
+      "price_small_too_cheap": 199,
+      "price_small_too_expensive": 899,
+      "product_interests": {
+        "desk_accessories": "Neutral",
+        "large_mousepad": "Interested",
+        "mobile_covers": "Neutral",
+        "posters": "Interested",
+        "small_mousepad": "Very interested",
+        "tapestry": "Not very interested"
+      },
+      "purchase_drivers": [
+        "Design / aesthetics",
+        "Build quality",
+        "Reviews / ratings"
+      ],
+      "purchase_intent": 9,
+      "purchase_location": [
+        "Amazon",
+        "Brand website"
+      ],
+      "recent_purchase": "Mousepad / desk mat",
+      "recent_spend": "₹1,000–₹1,999",
+      "respondent_type": "Undergraduate student",
+      "response_id": "TYT-2026-GO4HGA7E",
+      "setup_type": "Gaming setup",
+      "started_at": "2026-09-08T17:39:54.162Z",
+      "state": "Delhi",
+      "survey_version": "2.0",
+      "top_products": [
+        "Small Mousepads",
+        "Large Mousepads",
+        "Posters"
+      ],
+      "tytgear_interest": "Very interested",
+      "want_updates": "Yes"
+    },
+    "response_id": "TYT-2026-GO4HGA7E",
+    "row_array": [
+      "TYT-2026-GO4HGA7E",
+      "2.0",
+      "2026-09-08T17:39:54.162Z",
+      "2026-09-08T17:41:34Z",
+      100,
+      "IIT Delhi",
+      "18–20",
+      "Undergraduate student",
+      "New Delhi",
+      "Delhi",
+      "Gaming | Esports | Room / Desk Setup",
+      "Daily",
+      "Gaming PC / Laptop | Mobile",
+      "Gaming setup",
+      "Mousepad | Gaming mouse",
+      "1–3 months ago",
+      "Mousepad / desk mat",
+      "₹1,000–₹1,999",
+      "Amazon | Brand website",
+      "Design / aesthetics | Build quality | Reviews / ratings",
+      "Very interested",
+      "Interested",
+      "Neutral",
+      "Not very interested",
+      "Interested",
+      "Neutral",
+      "Small Mousepads | Large Mousepads | Posters",
+      "Looks unique / Premium | Matches my personality",
+      "Design A | Design C | Design F",
+      "Design C",
+      199,
+      349,
+      599,
+      899,
+      499,
+      899,
+      1499,
+      2199,
+      "Very interested",
+      "Instagram / Reels | YouTube / Shorts | Discord Communities",
+      "Setup inspiration \u0026 desk tours | Behind-the-scenes / manufacturing process",
+      "Flat launch discount (e.g. 20% off)",
+      9,
+      "Yes",
+      "go_student@iitd.ac.in",
+      "TRUE",
+      "TRUE",
+      "YouTube",
+      "@gocreator",
+      "5,000 – 25,000",
+      "Free review units \u0026 seed gear",
+      "FALSE"
+    ],
+    "submitted_at": "2026-09-08T17:41:34Z",
+    "suspicious": false
+  },
+  {
+    "completion_sec": 150,
+    "payload": {
+      "affiliation": "RV College of Engineering",
+      "age": "21–23",
+      "city": "Bengaluru",
+      "content_preferences": [
+        "Setup inspiration \u0026 desk tours"
+      ],
+      "design_most_likely_purchase": "Design A",
+      "design_purchase_drivers": [
+        "Looks unique / Premium"
+      ],
+      "designs_appealing": [
+        "Design A"
+      ],
+      "discovery_channels": [
+        "Reddit (r/IndianGaming, etc.)"
+      ],
+      "gaming_frequency": "Daily",
+      "interests": [
+        "Gaming",
+        "PC Building"
+      ],
+      "last_purchase": "1–3 months ago",
+      "launch_offer": "Flat launch discount (e.g. 20% off)",
+      "owned_products": [
+        "Mousepad",
+        "Mechanical keyboard"
+      ],
+      "platforms": [
+        "Gaming PC / Laptop"
+      ],
+      "product_interests": {
+        "desk_accessories": "Neutral",
+        "large_mousepad": "Very interested",
+        "mobile_covers": "Neutral",
+        "posters": "Interested",
+        "small_mousepad": "Neutral",
+        "tapestry": "Neutral"
+      },
+      "purchase_drivers": [
+        "Build quality"
+      ],
+      "purchase_intent": 10,
+      "purchase_location": [
+        "Amazon"
+      ],
+      "recent_purchase": "Mousepad / desk mat",
+      "recent_spend": "₹1,000–₹1,999",
+      "respondent_type": "Undergraduate student",
+      "response_id": "TYT-2026-1YNVGZTG",
+      "setup_type": "Gaming setup",
+      "started_at": "2026-09-08T17:40:01.707Z",
+      "state": "Karnataka",
+      "survey_version": "2.0",
+      "top_products": [
+        "Large Mousepads"
+      ],
+      "tytgear_interest": "Very interested"
+    },
+    "response_id": "TYT-2026-1YNVGZTG",
+    "row_array": [
+      "TYT-2026-1YNVGZTG",
+      "2.0",
+      "2026-09-08T17:40:01.707Z",
+      "2026-09-08T17:42:31Z",
+      150,
+      "RV College of Engineering",
+      "21–23",
+      "Undergraduate student",
+      "Bengaluru",
+      "Karnataka",
+      "Gaming | PC Building",
+      "Daily",
+      "Gaming PC / Laptop",
+      "Gaming setup",
+      "Mousepad | Mechanical keyboard",
+      "1–3 months ago",
+      "Mousepad / desk mat",
+      "₹1,000–₹1,999",
+      "Amazon",
+      "Build quality",
+      "Neutral",
+      "Very interested",
+      "Neutral",
+      "Neutral",
+      "Interested",
+      "Neutral",
+      "Large Mousepads",
+      "Looks unique / Premium",
+      "Design A",
+      "Design A",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Very interested",
+      "Reddit (r/IndianGaming, etc.)",
+      "Setup inspiration \u0026 desk tours",
+      "Flat launch discount (e.g. 20% off)",
+      10,
+      "",
+      "",
+      "FALSE",
+      "FALSE",
+      "",
+      "",
+      "",
+      "",
+      "FALSE"
+    ],
+    "submitted_at": "2026-09-08T17:42:31Z",
+    "suspicious": false
+  },
+  {
+    "completion_sec": 100,
+    "payload": {
+      "affiliation": "IIT Delhi",
+      "age": "18–20",
+      "city": "New Delhi",
+      "contact_consent": true,
+      "content_preferences": [
+        "Setup inspiration \u0026 desk tours",
+        "Behind-the-scenes / manufacturing process"
+      ],
+      "creator_audience": "5,000 – 25,000",
+      "creator_collab_type": [
+        "Free review units \u0026 seed gear"
+      ],
+      "creator_handle": "@gocreator",
+      "creator_platform": "YouTube",
+      "design_most_likely_purchase": "Design C",
+      "design_purchase_drivers": [
+        "Looks unique / Premium",
+        "Matches my personality"
+      ],
+      "designs_appealing": [
+        "Design A",
+        "Design C",
+        "Design F"
+      ],
+      "discovery_channels": [
+        "Instagram / Reels",
+        "YouTube / Shorts",
+        "Discord Communities"
+      ],
+      "email": "go_student@iitd.ac.in",
+      "gaming_frequency": "Daily",
+      "interests": [
+        "Gaming",
+        "Esports",
+        "Room / Desk Setup"
+      ],
+      "is_creator": true,
+      "last_purchase": "1–3 months ago",
+      "launch_offer": "Flat launch discount (e.g. 20% off)",
+      "owned_products": [
+        "Mousepad",
+        "Gaming mouse"
+      ],
+      "platforms": [
+        "Gaming PC / Laptop",
+        "Mobile"
+      ],
+      "price_large_expensive": 1499,
+      "price_large_good_deal": 899,
+      "price_large_too_cheap": 499,
+      "price_large_too_expensive": 2199,
+      "price_small_expensive": 599,
+      "price_small_good_deal": 349,
+      "price_small_too_cheap": 199,
+      "price_small_too_expensive": 899,
+      "product_interests": {
+        "desk_accessories": "Neutral",
+        "large_mousepad": "Interested",
+        "mobile_covers": "Neutral",
+        "posters": "Interested",
+        "small_mousepad": "Very interested",
+        "tapestry": "Not very interested"
+      },
+      "purchase_drivers": [
+        "Design / aesthetics",
+        "Build quality",
+        "Reviews / ratings"
+      ],
+      "purchase_intent": 9,
+      "purchase_location": [
+        "Amazon",
+        "Brand website"
+      ],
+      "recent_purchase": "Mousepad / desk mat",
+      "recent_spend": "₹1,000–₹1,999",
+      "respondent_type": "Undergraduate student",
+      "response_id": "TYT-2026-GO909WCJ",
+      "setup_type": "Gaming setup",
+      "started_at": "2026-09-08T17:55:37.218Z",
+      "state": "Delhi",
+      "survey_version": "2.0",
+      "top_products": [
+        "Small Mousepads",
+        "Large Mousepads",
+        "Posters"
+      ],
+      "tytgear_interest": "Very interested",
+      "want_updates": "Yes"
+    },
+    "response_id": "TYT-2026-GO909WCJ",
+    "row_array": [
+      "TYT-2026-GO909WCJ",
+      "2.0",
+      "2026-09-08T17:55:37.218Z",
+      "2026-09-08T17:57:17Z",
+      100,
+      "IIT Delhi",
+      "18–20",
+      "Undergraduate student",
+      "New Delhi",
+      "Delhi",
+      "Gaming | Esports | Room / Desk Setup",
+      "Daily",
+      "Gaming PC / Laptop | Mobile",
+      "Gaming setup",
+      "Mousepad | Gaming mouse",
+      "1–3 months ago",
+      "Mousepad / desk mat",
+      "₹1,000–₹1,999",
+      "Amazon | Brand website",
+      "Design / aesthetics | Build quality | Reviews / ratings",
+      "Very interested",
+      "Interested",
+      "Neutral",
+      "Not very interested",
+      "Interested",
+      "Neutral",
+      "Small Mousepads | Large Mousepads | Posters",
+      "Looks unique / Premium | Matches my personality",
+      "Design A | Design C | Design F",
+      "Design C",
+      199,
+      349,
+      599,
+      899,
+      499,
+      899,
+      1499,
+      2199,
+      "Very interested",
+      "Instagram / Reels | YouTube / Shorts | Discord Communities",
+      "Setup inspiration \u0026 desk tours | Behind-the-scenes / manufacturing process",
+      "Flat launch discount (e.g. 20% off)",
+      9,
+      "Yes",
+      "go_student@iitd.ac.in",
+      "TRUE",
+      "TRUE",
+      "YouTube",
+      "@gocreator",
+      "5,000 – 25,000",
+      "Free review units \u0026 seed gear",
+      "FALSE"
+    ],
+    "submitted_at": "2026-09-08T17:57:17Z",
+    "suspicious": false
+  },
+  {
+    "completion_sec": 126,
+    "payload": {
+      "affiliation": "IIT Delhi",
+      "age": "18–20",
+      "city": "New Delhi",
+      "contact_consent": true,
+      "content_preferences": [
+        "Setup inspiration \u0026 desk tours",
+        "Behind-the-scenes / manufacturing process"
+      ],
+      "creator_audience": "5,000 – 25,000",
+      "creator_collab_type": [
+        "Free review units \u0026 seed gear"
+      ],
+      "creator_handle": "@techandgaming",
+      "creator_platform": "YouTube",
+      "design_most_likely_purchase": "Design C",
+      "design_purchase_drivers": [
+        "Looks unique / Premium",
+        "Matches my personality"
+      ],
+      "designs_appealing": [
+        "Design A",
+        "Design C",
+        "Design F"
+      ],
+      "discovery_channels": [
+        "Instagram / Reels",
+        "YouTube / Shorts",
+        "Discord Communities"
+      ],
+      "email": "student@iitd.ac.in",
+      "gaming_frequency": "Daily",
+      "interests": [
+        "Gaming",
+        "Esports",
+        "Room / Desk Setup"
+      ],
+      "is_creator": true,
+      "last_purchase": "1–3 months ago",
+      "launch_offer": "Flat launch discount (e.g. 20% off)",
+      "owned_products": [
+        "Mousepad",
+        "Gaming mouse",
+        "Gaming headset"
+      ],
+      "platforms": [
+        "Gaming PC / Laptop",
+        "Mobile"
+      ],
+      "price_large_expensive": 1499,
+      "price_large_good_deal": 899,
+      "price_large_too_cheap": 499,
+      "price_large_too_expensive": 2199,
+      "price_small_expensive": 599,
+      "price_small_good_deal": 349,
+      "price_small_too_cheap": 199,
+      "price_small_too_expensive": 899,
+      "product_interests": {
+        "desk_accessories": "Neutral",
+        "large_mousepad": "Interested",
+        "mobile_covers": "Neutral",
+        "posters": "Interested",
+        "small_mousepad": "Very interested",
+        "tapestry": "Not very interested"
+      },
+      "purchase_drivers": [
+        "Design / aesthetics",
+        "Build quality",
+        "Reviews / ratings"
+      ],
+      "purchase_intent": 9,
+      "purchase_location": [
+        "Amazon",
+        "Brand website"
+      ],
+      "recent_purchase": "Mousepad / desk mat",
+      "recent_spend": "₹1,000–₹1,999",
+      "respondent_type": "Undergraduate student",
+      "response_id": "TYT-2026-N7K2V9B3",
+      "setup_type": "Gaming setup",
+      "started_at": "2026-09-08T17:56:28.756Z",
+      "state": "Delhi",
+      "survey_version": "2.0",
+      "top_products": [
+        "Small Mousepads",
+        "Large Mousepads",
+        "Posters"
+      ],
+      "tytgear_interest": "Very interested",
+      "want_updates": "Yes"
+    },
+    "response_id": "TYT-2026-N7K2V9B3",
+    "row_array": [
+      "TYT-2026-N7K2V9B3",
+      "2.0",
+      "2026-09-08T17:56:28.756Z",
+      "2026-09-08T17:58:35Z",
+      126,
+      "IIT Delhi",
+      "18–20",
+      "Undergraduate student",
+      "New Delhi",
+      "Delhi",
+      "Gaming | Esports | Room / Desk Setup",
+      "Daily",
+      "Gaming PC / Laptop | Mobile",
+      "Gaming setup",
+      "Mousepad | Gaming mouse | Gaming headset",
+      "1–3 months ago",
+      "Mousepad / desk mat",
+      "₹1,000–₹1,999",
+      "Amazon | Brand website",
+      "Design / aesthetics | Build quality | Reviews / ratings",
+      "Very interested",
+      "Interested",
+      "Neutral",
+      "Not very interested",
+      "Interested",
+      "Neutral",
+      "Small Mousepads | Large Mousepads | Posters",
+      "Looks unique / Premium | Matches my personality",
+      "Design A | Design C | Design F",
+      "Design C",
+      199,
+      349,
+      599,
+      899,
+      499,
+      899,
+      1499,
+      2199,
+      "Very interested",
+      "Instagram / Reels | YouTube / Shorts | Discord Communities",
+      "Setup inspiration \u0026 desk tours | Behind-the-scenes / manufacturing process",
+      "Flat launch discount (e.g. 20% off)",
+      9,
+      "Yes",
+      "student@iitd.ac.in",
+      "TRUE",
+      "TRUE",
+      "YouTube",
+      "@techandgaming",
+      "5,000 – 25,000",
+      "Free review units \u0026 seed gear",
+      "FALSE"
+    ],
+    "submitted_at": "2026-09-08T17:58:35Z",
+    "suspicious": false
+  },
+  {
+    "completion_sec": 126,
+    "payload": {
+      "affiliation": "IIT Delhi",
+      "age": "18–20",
+      "city": "New Delhi",
+      "contact_consent": true,
+      "content_preferences": [
+        "Setup inspiration \u0026 desk tours",
+        "Behind-the-scenes / manufacturing process"
+      ],
+      "creator_audience": "5,000 – 25,000",
+      "creator_collab_type": [
+        "Free review units \u0026 seed gear"
+      ],
+      "creator_handle": "@techandgaming",
+      "creator_platform": "YouTube",
+      "design_most_likely_purchase": "Design C",
+      "design_purchase_drivers": [
+        "Looks unique / Premium",
+        "Matches my personality"
+      ],
+      "designs_appealing": [
+        "Design A",
+        "Design C",
+        "Design F"
+      ],
+      "discovery_channels": [
+        "Instagram / Reels",
+        "YouTube / Shorts",
+        "Discord Communities"
+      ],
+      "email": "student@iitd.ac.in",
+      "gaming_frequency": "Daily",
+      "honeypot": "I am a spammer bot",
+      "interests": [
+        "Gaming",
+        "Esports",
+        "Room / Desk Setup"
+      ],
+      "is_creator": true,
+      "last_purchase": "1–3 months ago",
+      "launch_offer": "Flat launch discount (e.g. 20% off)",
+      "owned_products": [
+        "Mousepad",
+        "Gaming mouse",
+        "Gaming headset"
+      ],
+      "platforms": [
+        "Gaming PC / Laptop",
+        "Mobile"
+      ],
+      "price_large_expensive": 1499,
+      "price_large_good_deal": 899,
+      "price_large_too_cheap": 499,
+      "price_large_too_expensive": 2199,
+      "price_small_expensive": 599,
+      "price_small_good_deal": 349,
+      "price_small_too_cheap": 199,
+      "price_small_too_expensive": 899,
+      "product_interests": {
+        "desk_accessories": "Neutral",
+        "large_mousepad": "Interested",
+        "mobile_covers": "Neutral",
+        "posters": "Interested",
+        "small_mousepad": "Very interested",
+        "tapestry": "Not very interested"
+      },
+      "purchase_drivers": [
+        "Design / aesthetics",
+        "Build quality",
+        "Reviews / ratings"
+      ],
+      "purchase_intent": 9,
+      "purchase_location": [
+        "Amazon",
+        "Brand website"
+      ],
+      "recent_purchase": "Mousepad / desk mat",
+      "recent_spend": "₹1,000–₹1,999",
+      "respondent_type": "Undergraduate student",
+      "response_id": "TYT-2026-BOT99999",
+      "setup_type": "Gaming setup",
+      "started_at": "2026-09-08T17:56:28.756Z",
+      "state": "Delhi",
+      "survey_version": "2.0",
+      "top_products": [
+        "Small Mousepads",
+        "Large Mousepads",
+        "Posters"
+      ],
+      "tytgear_interest": "Very interested",
+      "want_updates": "Yes"
+    },
+    "response_id": "TYT-2026-BOT99999",
+    "row_array": [
+      "TYT-2026-BOT99999",
+      "2.0",
+      "2026-09-08T17:56:28.756Z",
+      "2026-09-08T17:58:35Z",
+      126,
+      "IIT Delhi",
+      "18–20",
+      "Undergraduate student",
+      "New Delhi",
+      "Delhi",
+      "Gaming | Esports | Room / Desk Setup",
+      "Daily",
+      "Gaming PC / Laptop | Mobile",
+      "Gaming setup",
+      "Mousepad | Gaming mouse | Gaming headset",
+      "1–3 months ago",
+      "Mousepad / desk mat",
+      "₹1,000–₹1,999",
+      "Amazon | Brand website",
+      "Design / aesthetics | Build quality | Reviews / ratings",
+      "Very interested",
+      "Interested",
+      "Neutral",
+      "Not very interested",
+      "Interested",
+      "Neutral",
+      "Small Mousepads | Large Mousepads | Posters",
+      "Looks unique / Premium | Matches my personality",
+      "Design A | Design C | Design F",
+      "Design C",
+      199,
+      349,
+      599,
+      899,
+      499,
+      899,
+      1499,
+      2199,
+      "Very interested",
+      "Instagram / Reels | YouTube / Shorts | Discord Communities",
+      "Setup inspiration \u0026 desk tours | Behind-the-scenes / manufacturing process",
+      "Flat launch discount (e.g. 20% off)",
+      9,
+      "Yes",
+      "student@iitd.ac.in",
+      "TRUE",
+      "TRUE",
+      "YouTube",
+      "@techandgaming",
+      "5,000 – 25,000",
+      "Free review units \u0026 seed gear",
+      "TRUE"
+    ],
+    "submitted_at": "2026-09-08T17:58:35Z",
+    "suspicious": true
+  },
+  {
+    "completion_sec": 5601,
+    "payload": {
+      "affiliation": "afasf",
+      "age": "21–23",
+      "budget_large_mousepad_max": 1199,
+      "budget_large_mousepad_min": 699,
+      "budget_poster_max": 749,
+      "budget_poster_min": 449,
+      "budget_small_mousepad_max": 699,
+      "budget_small_mousepad_min": 449,
+      "budget_tapestry_max": 1699,
+      "budget_tapestry_min": 999,
+      "city": "af",
+      "college_id": "OTHER",
+      "college_name": "Other / Not specified",
+      "content_preferences": [
+        "Aesthetic b-rolls \u0026 unboxings",
+        "Creator / Streamer collabs",
+        "Behind-the-scenes / manufacturing process"
+      ],
+      "creator_audience": "25,000 – 100,000",
+      "creator_collab_type": [
+        "Co-designing future mousepads \u0026 gear",
+        "Sponsored video / stream placement",
+        "Dedicated discount code with creator commission"
+      ],
+      "creator_handle": "affs",
+      "creator_platform": "College Gaming / Tech Club",
+      "design_most_likely_purchase": "Design B",
+      "design_purchase_drivers": [
+        "Looks good in my setup"
+      ],
+      "designs_appealing": [
+        "Design C",
+        "Design G",
+        "Design B"
+      ],
+      "discovery_channels": [
+        "Instagram / Reels",
+        "Gaming / Tech Events \u0026 Expos",
+        "Friend Recommendation / Word of Mouth"
+      ],
+      "gaming_frequency": "Once a week",
+      "interests": [
+        "Music",
+        "Fashion / Streetwear",
+        "Esports",
+        "Art / Illustration"
+      ],
+      "is_creator": true,
+      "last_purchase": "7–12 months ago",
+      "launch_offer": "Free shipping nationwide",
+      "owned_products": [
+        "Mousepad",
+        "Desk accessories",
+        "Controller"
+      ],
+      "platforms": [
+        "Nintendo Switch",
+        "Xbox",
+        "Gaming PC / Laptop"
+      ],
+      "price_large_expensive": 1199,
+      "price_large_good_deal": 699,
+      "price_large_too_cheap": 499,
+      "price_large_too_expensive": 2199,
+      "price_small_expensive": 699,
+      "price_small_good_deal": 449,
+      "price_small_too_cheap": 199,
+      "price_small_too_expensive": 899,
+      "product_interests": {
+        "apparel": "Neutral",
+        "bags": "Neutral",
+        "desk_accessories": "Interested",
+        "desk_mat": "Neutral",
+        "large_mousepad": "Not very interested",
+        "mobile_cover": "Neutral",
+        "mobile_covers": "Not interested",
+        "other": "Neutral",
+        "posters": "Interested",
+        "small_mousepad": "Interested",
+        "tapestry": "Not very interested",
+        "wall_art": "Neutral"
+      },
+      "purchase_drivers": [
+        "Reviews",
+        "Discount / offer",
+        "Build quality"
+      ],
+      "purchase_intent": 1,
+      "purchase_location": [
+        "Brand website"
+      ],
+      "recent_purchase": "Controller",
+      "recent_spend": "₹2,000–₹4,999",
+      "respondent_type": "Working professional",
+      "response_id": "TYT-2026-ZJBNYXXR",
+      "setup_type": "Basic desk/laptop setup",
+      "started_at": "2026-09-08T16:30:36.063Z",
+      "state": "Ladakh",
+      "survey_version": "2.0",
+      "top_products": [
+        "Small Mousepads",
+        "Wall Tapestries",
+        "Mobile Covers"
+      ],
+      "tytgear_interest": "Neutral"
+    },
+    "response_id": "TYT-2026-ZJBNYXXR",
+    "row_array": [
+      "TYT-2026-ZJBNYXXR",
+      "2.0",
+      "2026-09-08T16:30:36.063Z",
+      "2026-09-08T18:03:57Z",
+      5601,
+      "afasf",
+      "21–23",
+      "Working professional",
+      "af",
+      "Ladakh",
+      "Music | Fashion / Streetwear | Esports | Art / Illustration",
+      "Once a week",
+      "Nintendo Switch | Xbox | Gaming PC / Laptop",
+      "Basic desk/laptop setup",
+      "Mousepad | Desk accessories | Controller",
+      "7–12 months ago",
+      "Controller",
+      "₹2,000–₹4,999",
+      "Brand website",
+      "Reviews | Discount / offer | Build quality",
+      "Interested",
+      "Not very interested",
+      "Interested",
+      "Not very interested",
+      "Interested",
+      "Not interested",
+      "Small Mousepads | Wall Tapestries | Mobile Covers",
+      "Looks good in my setup",
+      "Design C | Design G | Design B",
+      "Design B",
+      199,
+      449,
+      699,
+      899,
+      499,
+      699,
+      1199,
+      2199,
+      "Neutral",
+      "Instagram / Reels | Gaming / Tech Events \u0026 Expos | Friend Recommendation / Word of Mouth",
+      "Aesthetic b-rolls \u0026 unboxings | Creator / Streamer collabs | Behind-the-scenes / manufacturing process",
+      "Free shipping nationwide",
+      1,
+      "",
+      "",
+      "FALSE",
+      "TRUE",
+      "College Gaming / Tech Club",
+      "affs",
+      "25,000 – 100,000",
+      "Co-designing future mousepads \u0026 gear | Sponsored video / stream placement | Dedicated discount code with creator commission",
+      "FALSE"
+    ],
+    "submitted_at": "2026-09-08T18:03:57Z",
+    "suspicious": false
+  },
+  {
+    "completion_sec": 130,
+    "payload": {
+      "affiliation": "IIT Delhi",
+      "age": "18–20",
+      "city": "New Delhi",
+      "contact_consent": true,
+      "content_preferences": [
+        "Setup inspiration \u0026 desk tours",
+        "Behind-the-scenes / manufacturing process"
+      ],
+      "creator_audience": "5,000 – 25,000",
+      "creator_collab_type": [
+        "Free review units \u0026 seed gear"
+      ],
+      "creator_handle": "@techandgaming",
+      "creator_platform": "YouTube",
+      "design_most_likely_purchase": "Design C",
+      "design_purchase_drivers": [
+        "Looks unique / Premium",
+        "Matches my personality"
+      ],
+      "designs_appealing": [
+        "Design A",
+        "Design C",
+        "Design F"
+      ],
+      "discovery_channels": [
+        "Instagram / Reels",
+        "YouTube / Shorts",
+        "Discord Communities"
+      ],
+      "email": "student@iitd.ac.in",
+      "gaming_frequency": "Daily",
+      "interests": [
+        "Gaming",
+        "Esports",
+        "Room / Desk Setup"
+      ],
+      "is_creator": true,
+      "last_purchase": "1–3 months ago",
+      "launch_offer": "Flat launch discount (e.g. 20% off)",
+      "owned_products": [
+        "Mousepad",
+        "Gaming mouse",
+        "Gaming headset"
+      ],
+      "platforms": [
+        "Gaming PC / Laptop",
+        "Mobile"
+      ],
+      "price_large_expensive": 1499,
+      "price_large_good_deal": 899,
+      "price_large_too_cheap": 499,
+      "price_large_too_expensive": 2199,
+      "price_small_expensive": 599,
+      "price_small_good_deal": 349,
+      "price_small_too_cheap": 199,
+      "price_small_too_expensive": 899,
+      "product_interests": {
+        "desk_accessories": "Neutral",
+        "large_mousepad": "Interested",
+        "mobile_covers": "Neutral",
+        "posters": "Interested",
+        "small_mousepad": "Very interested",
+        "tapestry": "Not very interested"
+      },
+      "purchase_drivers": [
+        "Design / aesthetics",
+        "Build quality",
+        "Reviews / ratings"
+      ],
+      "purchase_intent": 9,
+      "purchase_location": [
+        "Amazon",
+        "Brand website"
+      ],
+      "recent_purchase": "Mousepad / desk mat",
+      "recent_spend": "₹1,000–₹1,999",
+      "respondent_type": "Undergraduate student",
+      "response_id": "TYT-2026-N7K2V9B3",
+      "setup_type": "Gaming setup",
+      "started_at": "2026-09-09T05:56:07.862Z",
+      "state": "Delhi",
+      "survey_version": "2.0",
+      "top_products": [
+        "Small Mousepads",
+        "Large Mousepads",
+        "Posters"
+      ],
+      "tytgear_interest": "Very interested",
+      "want_updates": "Yes"
+    },
+    "response_id": "TYT-2026-N7K2V9B3",
+    "row_array": [
+      "TYT-2026-N7K2V9B3",
+      "2.0",
+      "2026-09-09T05:56:07.862Z",
+      "2026-09-09T05:58:18Z",
+      130,
+      "IIT Delhi",
+      "18–20",
+      "Undergraduate student",
+      "New Delhi",
+      "Delhi",
+      "Gaming | Esports | Room / Desk Setup",
+      "Daily",
+      "Gaming PC / Laptop | Mobile",
+      "Gaming setup",
+      "Mousepad | Gaming mouse | Gaming headset",
+      "1–3 months ago",
+      "Mousepad / desk mat",
+      "₹1,000–₹1,999",
+      "Amazon | Brand website",
+      "Design / aesthetics | Build quality | Reviews / ratings",
+      "Very interested",
+      "Interested",
+      "Neutral",
+      "Not very interested",
+      "Interested",
+      "Neutral",
+      "Small Mousepads | Large Mousepads | Posters",
+      "Looks unique / Premium | Matches my personality",
+      "Design A | Design C | Design F",
+      "Design C",
+      199,
+      349,
+      599,
+      899,
+      499,
+      899,
+      1499,
+      2199,
+      "Very interested",
+      "Instagram / Reels | YouTube / Shorts | Discord Communities",
+      "Setup inspiration \u0026 desk tours | Behind-the-scenes / manufacturing process",
+      "Flat launch discount (e.g. 20% off)",
+      9,
+      "Yes",
+      "student@iitd.ac.in",
+      "TRUE",
+      "TRUE",
+      "YouTube",
+      "@techandgaming",
+      "5,000 – 25,000",
+      "Free review units \u0026 seed gear",
+      "FALSE"
+    ],
+    "submitted_at": "2026-09-09T05:58:18Z",
+    "suspicious": false
+  },
+  {
+    "completion_sec": 130,
+    "payload": {
+      "response_id": "TYT-2026-BOT99999",
+      "survey_version": "2.0",
+      "started_at": "2026-09-09T05:56:07.862Z",
+      "honeypot": "I am a spammer bot",
+      "age": "18–20",
+      "respondent_type": "Undergraduate student",
+      "city": "New Delhi",
+      "state": "Delhi",
+      "affiliation": "IIT Delhi",
+      "interests": [
+        "Gaming",
+        "Esports",
+        "Room / Desk Setup"
+      ],
+      "gaming_frequency": "Daily",
+      "platforms": [
+        "Gaming PC / Laptop",
+        "Mobile"
+      ],
+      "setup_type": "Gaming setup",
+      "owned_products": [
+        "Mousepad",
+        "Gaming mouse",
+        "Gaming headset"
+      ],
+      "last_purchase": "1–3 months ago",
+      "recent_purchase": "Mousepad / desk mat",
+      "recent_spend": "₹1,000–₹1,999",
+      "purchase_location": [
+        "Amazon",
+        "Brand website"
+      ],
+      "purchase_drivers": [
+        "Design / aesthetics",
+        "Build quality",
+        "Reviews / ratings"
+      ],
+      "product_interests": {
+        "desk_accessories": "Neutral",
+        "large_mousepad": "Interested",
+        "mobile_covers": "Neutral",
+        "posters": "Interested",
+        "small_mousepad": "Very interested",
+        "tapestry": "Not very interested"
+      },
+      "top_products": [
+        "Small Mousepads",
+        "Large Mousepads",
+        "Posters"
+      ],
+      "design_purchase_drivers": [
+        "Looks unique / Premium",
+        "Matches my personality"
+      ],
+      "designs_appealing": [
+        "Design A",
+        "Design C",
+        "Design F"
+      ],
+      "design_most_likely_purchase": "Design C",
+      "price_small_too_cheap": 199,
+      "price_small_good_deal": 349,
+      "price_small_expensive": 599,
+      "price_small_too_expensive": 899,
+      "price_large_too_cheap": 499,
+      "price_large_good_deal": 899,
+      "price_large_expensive": 1499,
+      "price_large_too_expensive": 2199,
+      "tytgear_interest": "Very interested",
+      "discovery_channels": [
+        "Instagram / Reels",
+        "YouTube / Shorts",
+        "Discord Communities"
+      ],
+      "content_preferences": [
+        "Setup inspiration \u0026 desk tours",
+        "Behind-the-scenes / manufacturing process"
+      ],
+      "launch_offer": "Flat launch discount (e.g. 20% off)",
+      "purchase_intent": 9,
+      "want_updates": "Yes",
+      "email": "student@iitd.ac.in",
+      "contact_consent": true,
+      "is_creator": true,
+      "creator_platform": "YouTube",
+      "creator_handle": "@techandgaming",
+      "creator_audience": "5,000 – 25,000",
+      "creator_collab_type": [
+        "Free review units \u0026 seed gear"
+      ]
+    },
+    "response_id": "TYT-2026-BOT99999",
+    "row_array": [
+      "TYT-2026-BOT99999",
+      "2.0",
+      "2026-09-09T05:56:07.862Z",
+      "2026-09-09T05:58:18Z",
+      130,
+      "IIT Delhi",
+      "18–20",
+      "Undergraduate student",
+      "New Delhi",
+      "Delhi",
+      "Gaming | Esports | Room / Desk Setup",
+      "Daily",
+      "Gaming PC / Laptop | Mobile",
+      "Gaming setup",
+      "Mousepad | Gaming mouse | Gaming headset",
+      "1–3 months ago",
+      "Mousepad / desk mat",
+      "₹1,000–₹1,999",
+      "Amazon | Brand website",
+      "Design / aesthetics | Build quality | Reviews / ratings",
+      "Very interested",
+      "Interested",
+      "Neutral",
+      "Not very interested",
+      "Interested",
+      "Neutral",
+      "Small Mousepads | Large Mousepads | Posters",
+      "Looks unique / Premium | Matches my personality",
+      "Design A | Design C | Design F",
+      "Design C",
+      199,
+      349,
+      599,
+      899,
+      499,
+      899,
+      1499,
+      2199,
+      "Very interested",
+      "Instagram / Reels | YouTube / Shorts | Discord Communities",
+      "Setup inspiration \u0026 desk tours | Behind-the-scenes / manufacturing process",
+      "Flat launch discount (e.g. 20% off)",
+      9,
+      "Yes",
+      "student@iitd.ac.in",
+      "TRUE",
+      "TRUE",
+      "YouTube",
+      "@techandgaming",
+      "5,000 – 25,000",
+      "Free review units \u0026 seed gear",
+      "TRUE"
+    ],
+    "submitted_at": "2026-09-09T05:58:18Z",
+    "suspicious": true
+  }
+]

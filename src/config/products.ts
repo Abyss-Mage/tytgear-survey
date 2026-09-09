@@ -1,0 +1,58 @@
+import { ProductInfo } from "@/types/survey";
+
+export const PRODUCTS: ProductInfo[] = [
+  {
+    id: "small_mousepad",
+    name: "Small Mousepads",
+    category: "Desk & Setup",
+    description: "Compact precision mousepads (approx 250 x 210mm) ideal for tight desk setups or portable laptop gaming.",
+    image_url: "/images/products/small-mousepad.webp",
+    active: true,
+    display_order: 1,
+  },
+  {
+    id: "large_mousepad",
+    name: "Large Mousepads",
+    category: "Desk & Setup",
+    description: "Extended large desk mats (80 x 33 cm) covering keyboard, mouse, and workspace with hybrid glide.",
+    image_url: "/images/brand/tytgear-showcase.webp",
+    active: true,
+    display_order: 2,
+  },
+  {
+    id: "desk_accessories",
+    name: "Gaming Desk Accessories",
+    category: "Accessories",
+    description: "Headphone stands, cable bungees, premium coaster sets, and modular desk organizers.",
+    image_url: "/images/products/desk-accessories.svg",
+    active: true,
+    display_order: 3,
+  },
+  {
+    id: "tapestry",
+    name: "Wall Tapestries",
+    category: "Room Decor",
+    description: "High-definition aesthetic fabric wall hangings featuring illustrated art and setup backdrops.",
+    image_url: "/images/products/tapestry.svg",
+    active: true,
+    display_order: 4,
+  },
+  {
+    id: "posters",
+    name: "Posters",
+    category: "Room Decor",
+    description: "Premium matte art prints, framed anime & gaming canvas posters for room wall setups.",
+    image_url: "/images/products/wall-art.svg",
+    active: true,
+    display_order: 5,
+  },
+  {
+    id: "mobile_covers",
+    name: "Mobile Covers",
+    category: "Everyday Gear",
+    description: "Impact-resistant phone cases featuring distinctive gaming, street-style, and anime artwork.",
+    image_url: "/images/products/mobile-cover.svg",
+    active: true,
+    display_order: 6,
+  },
+];

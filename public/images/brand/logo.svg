@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80">
+  <rect width="320" height="80" rx="12" fill="#4F766F" />
+  <path d="M28 24 L52 24 L52 32 L44 32 L44 56 L36 56 L36 32 L28 32 Z" fill="#F2F0EA" />
+  <path d="M58 24 L68 40 L78 24 L88 24 L74 46 L74 56 L66 56 L66 46 L52 24 Z" fill="#F2F0EA" />
+  <path d="M92 24 L116 24 L116 32 L108 32 L108 56 L100 56 L100 32 L92 32 Z" fill="#F2F0EA" />
+  <text x="132" y="52" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="32" fill="#F2F0EA" letter-spacing="4">GEAR</text>
+  <circle cx="288" cy="40" r="6" fill="#A3C3BC" />
+</svg>
