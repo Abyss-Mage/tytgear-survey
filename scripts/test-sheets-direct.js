@@ -50,6 +50,7 @@ async function testGoogleSheets() {
     new Date().toISOString(),
     new Date(Date.now() - 120000).toISOString(),
     120,
+    "Rahul Verma",
     "Indian Institute of Technology Delhi (IIT Delhi)",
     "21–23",
     "Undergraduate student",
@@ -75,7 +76,8 @@ async function testGoogleSheets() {
     "Anime / Manga Artwork | Cyberpunk / Sci-Fi / Tech",
     "₹299 – ₹499",
     "₹699 – ₹1,199",
-    "₹249 – ₹449",
+    "₹349 – ₹749",
+    "₹599 – ₹1,199",
     "₹499 – ₹899",
     "Extremely interested — would love to try them",
     "Instagram / Reels | YouTube / Shorts",
@@ -83,7 +85,7 @@ async function testGoogleSheets() {
     "Flat launch discount (e.g. 20% off)",
     9,
     "Yes",
-    "tester@tytgear.com",
+    "rahul.verma@iitd.ac.in",
     "TRUE",
     "FALSE",
     "",
@@ -96,7 +98,7 @@ async function testGoogleSheets() {
   console.log("Appending test row to Responses tab...");
   const appendRes = await sheets.spreadsheets.values.append({
     spreadsheetId: sheetId,
-    range: "Responses!A:AS",
+    range: "Responses!A:AU",
     valueInputOption: "USER_ENTERED",
     requestBody: {
       values: [testResponseRow],

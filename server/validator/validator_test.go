@@ -24,6 +24,7 @@ func createValidPayload() *models.SurveySubmissionPayload {
 		SurveyVersion:       "2.0",
 		StartedAt:           "2026-09-08T14:00:00Z",
 		Honeypot:            "",
+		Name:                "Alex Sharma",
 		Age:                 "18–20",
 		RespondentType:      "Undergraduate student",
 		City:                "New Delhi",

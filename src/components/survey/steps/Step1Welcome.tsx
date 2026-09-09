@@ -1,14 +1,25 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { Gift, Tag, Clock, ShieldCheck, HeartHandshake, ArrowRight, Sparkles } from "lucide-react";
+import { Gift, Tag, Clock, ShieldCheck, HeartHandshake, ArrowRight, Sparkles, User } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useSurvey } from "../SurveyContext";
 import { Honeypot } from "../Honeypot";
 
 export const Step1Welcome: React.FC = () => {
-  const { goToNextStep, collegeName, collegeId } = useSurvey();
+  const { goToNextStep, collegeName, collegeId, answers, updateAnswers } = useSurvey();
+  const [nameError, setNameError] = useState<string | null>(null);
+
+  const handleStart = () => {
+    const trimmed = (answers.name || "").trim();
+    if (!trimmed || trimmed.length < 2) {
+      setNameError("Please enter your name to begin the survey.");
+      return;
+    }
+    setNameError(null);
+    goToNextStep();
+  };
 
   return (
     <div className="max-w-2xl mx-auto py-2 sm:py-6 animate-fadeIn space-y-6">
@@ -110,12 +121,44 @@ export const Step1Welcome: React.FC = () => {
         </div>
       </div>
 
+      {/* Participant Name Input */}
+      <div className="p-5 rounded-2xl border-2 border-brand-300 bg-gradient-to-br from-brand-50/50 via-canvas-card to-canvas-card shadow-sm text-left max-w-md mx-auto space-y-2">
+        <label className="block text-xs font-bold text-brand-dark">
+          Your Name <span className="text-red-500">*</span>
+        </label>
+        <div className="relative">
+          <User className="absolute left-3 top-3 w-4 h-4 text-canvas-muted pointer-events-none" />
+          <input
+            type="text"
+            placeholder="e.g. Alex Sharma"
+            value={answers.name || ""}
+            onChange={(e) => {
+              updateAnswers({ name: e.target.value });
+              if (nameError) setNameError(null);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                handleStart();
+              }
+            }}
+            className="w-full pl-9 pr-3 py-2.5 rounded-xl border border-canvas-border bg-canvas text-brand-dark text-sm placeholder:text-canvas-muted focus:outline-none focus:ring-2 focus:ring-brand"
+          />
+        </div>
+        {nameError && (
+          <p className="text-xs font-semibold text-red-600 animate-fadeIn">{nameError}</p>
+        )}
+        <p className="text-[11px] text-canvas-muted">
+          Your name will be recorded on your survey receipt and giveaway entry ticket.
+        </p>
+      </div>
+
       {/* Call to Action */}
       <div className="pt-2">
         <Button
           size="lg"
           fullWidth
-          onClick={goToNextStep}
+          onClick={handleStart}
           className="text-base font-bold sm:w-auto sm:min-w-[240px] shadow-md"
         >
           <span>Start Survey &amp; Enter Giveaway</span>

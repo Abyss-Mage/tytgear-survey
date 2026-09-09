@@ -36,6 +36,11 @@ func ValidateSubmission(p *models.SurveySubmissionPayload) []models.FieldError {
 		addErr("started_at", "Started timestamp is required")
 	}
 
+	// Participant Identity
+	if strings.TrimSpace(p.Name) == "" {
+		addErr("name", "Name is required")
+	}
+
 	// Section 1 - Profile
 	if strings.TrimSpace(p.Age) == "" {
 		addErr("age", "Age group is required")

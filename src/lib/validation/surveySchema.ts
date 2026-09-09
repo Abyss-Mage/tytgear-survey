@@ -31,6 +31,9 @@ export const SurveySubmissionSchema = z
     college_id: z.string().optional(),
     college_name: z.string().optional(),
 
+    // Participant Identity
+    name: z.string().trim().min(1, "Name is required"),
+
     // Section 1: About You
     age: z.string().min(1, "Age is required"),
     respondent_type: z.string().min(1, "Respondent role is required"),
@@ -78,6 +81,10 @@ export const SurveySubmissionSchema = z
     budget_small_mousepad_max: z.number().positive().optional(),
     budget_large_mousepad_min: z.number().positive().optional(),
     budget_large_mousepad_max: z.number().positive().optional(),
+    budget_framed_poster_min: z.number().positive().optional(),
+    budget_framed_poster_max: z.number().positive().optional(),
+    budget_metal_poster_min: z.number().positive().optional(),
+    budget_metal_poster_max: z.number().positive().optional(),
     budget_poster_min: z.number().positive().optional(),
     budget_poster_max: z.number().positive().optional(),
     budget_tapestry_min: z.number().positive().optional(),

@@ -19,17 +19,25 @@ export const Step10BudgetTapestry: React.FC = () => {
     { label: "Premium Backdrop", min: 999, max: 1699 },
   ];
 
+  const tapestryDesigns = [
+    {
+      name: "Anime Legend Backdrop",
+      imageSrc: "/images/mockups/tapestries.webp",
+      tag: "Room Mockup",
+    },
+  ];
+
   return (
     <div className="space-y-8 animate-fadeIn">
       <div>
         <span className="text-xs font-bold text-brand uppercase tracking-wider">
-          Section 6 • Product Pricing (4 of 4)
+          Section 6 • Product Pricing (5 of 5)
         </span>
         <h2 className="text-xl sm:text-2xl font-bold text-brand-dark mt-1">
           Aesthetic Wall Tapestries
         </h2>
         <p className="text-xs sm:text-sm text-canvas-muted mt-1">
-          Review the large wall tapestry specifications below, then set your comfortable budget range.
+          Review the large wall tapestry specifications and room backdrop mockup below, then set your comfortable budget range.
         </p>
       </div>
 
@@ -37,7 +45,8 @@ export const Step10BudgetTapestry: React.FC = () => {
       <ProductSpecCard
         title="TYTGEAR Aesthetic Wall Tapestries"
         category="Room Ambience & Setup Backdrop"
-        imageSrc="/images/products/tapestry.svg"
+        imageSrc="/images/mockups/tapestries.webp"
+        designs={tapestryDesigns}
         dimensions="150 × 100 cm (59 × 39 inches)"
         thickness="Lightweight & Durable"
         surface="Silky woven microfiber polyester"

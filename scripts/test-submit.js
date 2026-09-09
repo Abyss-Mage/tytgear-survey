@@ -28,6 +28,7 @@ const validPayload = {
   survey_version: "2.0",
   started_at: "2026-09-08T12:00:00.000Z",
   honeypot: "",
+  name: "Alex Sharma",
   age: "18–20",
   respondent_type: "Undergraduate student",
   city: "New Delhi",

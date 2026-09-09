@@ -31,6 +31,9 @@ const SurveySubmissionSchema = z
     college_id: z.string().optional(),
     college_name: z.string().optional(),
 
+    // Participant Identity
+    name: z.string().trim().min(1, "Name is required"),
+
     // Section 1: About You
     age: z.string().min(1, "Age is required"),
     respondent_type: z.string().min(1, "Respondent role is required"),
@@ -75,6 +78,20 @@ const SurveySubmissionSchema = z
       .min(1, "Please select at least 1 appealing design")
       .max(3, "Please select up to 3 designs"),
     design_most_likely_purchase: z.string().optional(),
+
+    // Section 6: Product Budget Ranges
+    budget_small_mousepad_min: z.number().positive().optional(),
+    budget_small_mousepad_max: z.number().positive().optional(),
+    budget_large_mousepad_min: z.number().positive().optional(),
+    budget_large_mousepad_max: z.number().positive().optional(),
+    budget_framed_poster_min: z.number().positive().optional(),
+    budget_framed_poster_max: z.number().positive().optional(),
+    budget_metal_poster_min: z.number().positive().optional(),
+    budget_metal_poster_max: z.number().positive().optional(),
+    budget_poster_min: z.number().positive().optional(),
+    budget_poster_max: z.number().positive().optional(),
+    budget_tapestry_min: z.number().positive().optional(),
+    budget_tapestry_max: z.number().positive().optional(),
 
     // Section 6: Pricing Sliders
     price_small_too_cheap: z.number().positive().optional(),

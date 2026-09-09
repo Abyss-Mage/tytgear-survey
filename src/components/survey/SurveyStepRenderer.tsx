@@ -10,7 +10,8 @@ import { Step5Demand } from "./steps/Step5Demand";
 import { Step6Designs } from "./steps/Step6Designs";
 import { Step7PricingSmall } from "./steps/Step7PricingSmall";
 import { Step8PricingLarge } from "./steps/Step8PricingLarge";
-import { Step9BudgetPoster } from "./steps/Step9BudgetPoster";
+import { Step9PricingFramedPoster } from "./steps/Step9PricingFramedPoster";
+import { Step10PricingMetalPoster } from "./steps/Step10PricingMetalPoster";
 import { Step10BudgetTapestry } from "./steps/Step10BudgetTapestry";
 import { Step11Concept } from "./steps/Step11Concept";
 import { Step12Marketing } from "./steps/Step12Marketing";
@@ -38,16 +39,18 @@ export const SurveyStepRenderer: React.FC = () => {
     case 8:
       return <Step8PricingLarge />;
     case 9:
-      return <Step9BudgetPoster />;
+      return <Step9PricingFramedPoster />;
     case 10:
-      return <Step10BudgetTapestry />;
+      return <Step10PricingMetalPoster />;
     case 11:
-      return <Step11Concept />;
+      return <Step10BudgetTapestry />;
     case 12:
-      return <Step12Marketing />;
+      return <Step11Concept />;
     case 13:
-      return <Step13CreatorForm />;
+      return <Step12Marketing />;
     case 14:
+      return <Step13CreatorForm />;
+    case 15:
       return <Step14ThankYou />;
     default:
       return <Step1Welcome />;

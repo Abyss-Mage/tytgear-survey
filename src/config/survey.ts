@@ -1,7 +1,7 @@
 import { SurveyAnswers } from "@/types/survey";
 
 export const SURVEY_VERSION = "2.0";
-export const TOTAL_STEPS = 14;
+export const TOTAL_STEPS = 15;
 export const GUARANTEED_DISCOUNT_CODE = "TYTLAUNCH20";
 
 export const SURVEY_STEPS = [
@@ -13,12 +13,13 @@ export const SURVEY_STEPS = [
   { id: 6, title: "Section 5 — Design Preferences", shortTitle: "Designs" },
   { id: 7, title: "Section 6 — Budget: Small Mousepad", shortTitle: "Small Pad" },
   { id: 8, title: "Section 6 — Budget: Large Mousepad", shortTitle: "Large Pad" },
-  { id: 9, title: "Section 6 — Budget: Posters", shortTitle: "Posters" },
-  { id: 10, title: "Section 6 — Budget: Wall Tapestries", shortTitle: "Tapestries" },
-  { id: 11, title: "Section 7 — TYTGEAR", shortTitle: "TYTGEAR" },
-  { id: 12, title: "Section 8 — Marketing & Launch", shortTitle: "Marketing" },
-  { id: 13, title: "Creator Partnership", shortTitle: "Collab" },
-  { id: 14, title: "Completion & Rewards", shortTitle: "Finish" },
+  { id: 9, title: "Section 6 — Budget: Framed Posters", shortTitle: "Framed Poster" },
+  { id: 10, title: "Section 6 — Budget: Metal Posters", shortTitle: "Metal Poster" },
+  { id: 11, title: "Section 6 — Budget: Wall Tapestries", shortTitle: "Tapestries" },
+  { id: 12, title: "Section 7 — TYTGEAR", shortTitle: "TYTGEAR" },
+  { id: 13, title: "Section 8 — Marketing & Launch", shortTitle: "Marketing" },
+  { id: 14, title: "Creator Partnership", shortTitle: "Collab" },
+  { id: 15, title: "Completion & Rewards", shortTitle: "Finish" },
 ];
 
 export const INDIAN_STATES_AND_UTS = [
@@ -61,6 +62,9 @@ export const INDIAN_STATES_AND_UTS = [
 ];
 
 export const INITIAL_SURVEY_ANSWERS: SurveyAnswers = {
+  // Participant Identity
+  name: "",
+
   // Section 1
   age: "",
   respondent_type: "",
@@ -104,6 +108,12 @@ export const INITIAL_SURVEY_ANSWERS: SurveyAnswers = {
 
   budget_large_mousepad_min: 699,
   budget_large_mousepad_max: 1299,
+
+  budget_framed_poster_min: 349,
+  budget_framed_poster_max: 749,
+
+  budget_metal_poster_min: 599,
+  budget_metal_poster_max: 1199,
 
   budget_poster_min: 199,
   budget_poster_max: 449,

@@ -12,6 +12,9 @@ type SurveySubmissionPayload struct {
 	StartedAt     string `json:"started_at"`
 	Honeypot      string `json:"honeypot,omitempty"`
 
+	// Participant Identity
+	Name string `json:"name"`
+
 	// Section 1 - Profile
 	Age            string `json:"age"`
 	RespondentType string `json:"respondent_type"`
@@ -49,6 +52,10 @@ type SurveySubmissionPayload struct {
 	BudgetSmallMousepadMax *float64 `json:"budget_small_mousepad_max,omitempty"`
 	BudgetLargeMousepadMin *float64 `json:"budget_large_mousepad_min,omitempty"`
 	BudgetLargeMousepadMax *float64 `json:"budget_large_mousepad_max,omitempty"`
+	BudgetFramedPosterMin  *float64 `json:"budget_framed_poster_min,omitempty"`
+	BudgetFramedPosterMax  *float64 `json:"budget_framed_poster_max,omitempty"`
+	BudgetMetalPosterMin   *float64 `json:"budget_metal_poster_min,omitempty"`
+	BudgetMetalPosterMax   *float64 `json:"budget_metal_poster_max,omitempty"`
 	BudgetPosterMin        *float64 `json:"budget_poster_min,omitempty"`
 	BudgetPosterMax        *float64 `json:"budget_poster_max,omitempty"`
 	BudgetTapestryMin      *float64 `json:"budget_tapestry_min,omitempty"`
@@ -173,11 +180,21 @@ func (p *SurveySubmissionPayload) BuildResponseRow(completedAt string, completio
 		affiliation = p.CollegeName
 	}
 
+	framedPosterMin := p.BudgetFramedPosterMin
+	if framedPosterMin == nil {
+		framedPosterMin = p.BudgetPosterMin
+	}
+	framedPosterMax := p.BudgetFramedPosterMax
+	if framedPosterMax == nil {
+		framedPosterMax = p.BudgetPosterMax
+	}
+
 	return []interface{}{
 		p.ResponseID,
 		completedAt,
 		p.StartedAt,
 		completionSeconds,
+		p.Name,
 		affiliation,
 		p.Age,
 		p.RespondentType,
@@ -203,7 +220,8 @@ func (p *SurveySubmissionPayload) BuildResponseRow(completedAt string, completio
 		FormatMulti(p.DesignPurchaseDrivers),
 		formatBudgetRange(p.BudgetSmallMousepadMin, p.BudgetSmallMousepadMax),
 		formatBudgetRange(p.BudgetLargeMousepadMin, p.BudgetLargeMousepadMax),
-		formatBudgetRange(p.BudgetPosterMin, p.BudgetPosterMax),
+		formatBudgetRange(framedPosterMin, framedPosterMax),
+		formatBudgetRange(p.BudgetMetalPosterMin, p.BudgetMetalPosterMax),
 		formatBudgetRange(p.BudgetTapestryMin, p.BudgetTapestryMax),
 		p.TYTGearInterest,
 		FormatMulti(p.DiscoveryChannels),

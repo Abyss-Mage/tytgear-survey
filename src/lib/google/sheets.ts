@@ -111,6 +111,7 @@ export function buildResponseRow(
     metadata.completed_at,
     data.started_at,
     metadata.completion_seconds,
+    data.name || "",
     affiliation,
     data.age,
     data.respondent_type,
@@ -136,7 +137,8 @@ export function buildResponseRow(
     formatMulti(data.design_purchase_drivers),
     formatBudgetRange(data.budget_small_mousepad_min, data.budget_small_mousepad_max),
     formatBudgetRange(data.budget_large_mousepad_min, data.budget_large_mousepad_max),
-    formatBudgetRange(data.budget_poster_min, data.budget_poster_max),
+    formatBudgetRange(data.budget_framed_poster_min ?? data.budget_poster_min, data.budget_framed_poster_max ?? data.budget_poster_max),
+    formatBudgetRange(data.budget_metal_poster_min, data.budget_metal_poster_max),
     formatBudgetRange(data.budget_tapestry_min, data.budget_tapestry_max),
     data.tytgear_interest,
     formatMulti(data.discovery_channels),
@@ -266,10 +268,10 @@ export async function isEmailAlreadyRegistered(email: string): Promise<boolean> 
   if (clientInfo && now - lastEmailCacheFetch > EMAIL_CACHE_TTL_MS) {
     try {
       const { sheets, sheetId } = clientInfo;
-      // Single batchGet call across all 3 sheets: Leads!D2:D, WooCommerce Coupons!D2:D, Responses!AL2:AL
+      // Batch query across Leads, WooCommerce Coupons, and Responses tabs (both legacy AL and new AN email columns)
       const batchRes = await sheets.spreadsheets.values.batchGet({
         spreadsheetId: sheetId,
-        ranges: ["Leads!D2:D", "WooCommerce Coupons!D2:D", "Responses!AL2:AL"],
+        ranges: ["Leads!D2:D", "WooCommerce Coupons!D2:D", "Responses!AL2:AL", "Responses!AN2:AN"],
       });
 
       if (batchRes.data.valueRanges && Array.isArray(batchRes.data.valueRanges)) {
@@ -468,10 +470,10 @@ export async function appendSurveyResponse(
   try {
     const responseRow = buildResponseRow(data, metadata);
 
-    // 1. Append to Responses tab (A:AS covers all 45 columns)
+    // 1. Append to Responses tab (A:AU covers all 47 columns)
     await sheets.spreadsheets.values.append({
       spreadsheetId: sheetId,
-      range: "Responses!A:AS",
+      range: "Responses!A:AU",
       valueInputOption: "USER_ENTERED",
       requestBody: {
         values: [responseRow],

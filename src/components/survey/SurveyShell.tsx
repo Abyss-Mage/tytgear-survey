@@ -44,14 +44,14 @@ export const SurveyShell: React.FC<SurveyShellProps> = ({ children }) => {
         </div>
       </header>
 
-      {/* Progress Bar (Show on steps 2 to 13) */}
-      {currentStep > 1 && currentStep < 14 && (
+      {/* Progress Bar (Show on all survey question steps before thank you step) */}
+      {currentStep > 1 && currentStep < totalSteps && (
         <ProgressBar currentStep={currentStep} totalSteps={totalSteps} />
       )}
 
       {/* Main Content Area */}
       <main className="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6 md:p-8 flex flex-col justify-start">
-        {submitError && currentStep < 14 && (
+        {submitError && currentStep < totalSteps && (
           <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm flex items-start gap-3 animate-fadeIn shadow-sm">
             <AlertCircle className="w-5 h-5 flex-shrink-0 text-red-500 mt-0.5" />
             <div className="flex-1">

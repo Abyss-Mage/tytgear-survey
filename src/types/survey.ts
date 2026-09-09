@@ -13,6 +13,9 @@ export type LikertRating =
   | 'Not interested';
 
 export interface SurveyAnswers {
+  // Participant Identity (collected on Welcome step)
+  name: string;
+
   // Section 1: About You
   age: string;
   respondent_type: string;
@@ -51,6 +54,12 @@ export interface SurveyAnswers {
 
   budget_large_mousepad_min?: number;
   budget_large_mousepad_max?: number;
+
+  budget_framed_poster_min?: number;
+  budget_framed_poster_max?: number;
+
+  budget_metal_poster_min?: number;
+  budget_metal_poster_max?: number;
 
   budget_poster_min?: number;
   budget_poster_max?: number;

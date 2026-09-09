@@ -4,6 +4,9 @@ import { SurveyAnswers } from "@/types/survey";
  * Maps a field name to its corresponding survey step number (1 to 14)
  */
 export function getFieldStep(field: string): number {
+  if (field === "name") {
+    return 1;
+  }
   if (
     [
       "affiliation",
@@ -60,14 +63,20 @@ export function getFieldStep(field: string): number {
   if (field.includes("large")) {
     return 8;
   }
+  if (field.includes("framed_poster")) {
+    return 9;
+  }
+  if (field.includes("metal_poster")) {
+    return 10;
+  }
   if (field.includes("poster")) {
     return 9;
   }
   if (field.includes("tapestry")) {
-    return 10;
+    return 11;
   }
   if (field === "tytgear_interest") {
-    return 11;
+    return 12;
   }
   if (
     [
@@ -77,9 +86,9 @@ export function getFieldStep(field: string): number {
       "purchase_intent",
     ].includes(field)
   ) {
-    return 12;
+    return 13;
   }
-  return 13;
+  return 14;
 }
 
 /**
@@ -89,6 +98,15 @@ export function getFieldStep(field: string): number {
 export function findFirstIncompleteStep(
   answers: SurveyAnswers
 ): { step: number; field: string; message: string } | null {
+  // Step 1: Welcome & Name
+  if (!answers.name || answers.name.trim().length < 2) {
+    return {
+      step: 1,
+      field: "name",
+      message: "Please enter your name on the welcome page.",
+    };
+  }
+
   // Step 2: About You
   if (!answers.age) {
     return {
@@ -236,64 +254,64 @@ export function findFirstIncompleteStep(
     };
   }
 
-  // Step 11: TYTGEAR Concept
+  // Step 12: TYTGEAR Concept
   if (!answers.tytgear_interest) {
     return {
-      step: 11,
+      step: 12,
       field: "tytgear_interest",
       message: "Please indicate your level of interest in TYTGEAR.",
     };
   }
 
-  // Step 12: Marketing & Launch
+  // Step 13: Marketing & Launch
   if (!answers.discovery_channels || answers.discovery_channels.length === 0) {
     return {
-      step: 12,
+      step: 13,
       field: "discovery_channels",
       message: "Please select where you are most likely to discover TYTGEAR.",
     };
   }
   if (!answers.content_preferences || answers.content_preferences.length === 0) {
     return {
-      step: 12,
+      step: 13,
       field: "content_preferences",
       message: "Please select what content types would make you follow TYTGEAR.",
     };
   }
   if (!answers.launch_offer) {
     return {
-      step: 12,
+      step: 13,
       field: "launch_offer",
       message: "Please select your preferred launch offer.",
     };
   }
   if (answers.purchase_intent === undefined || answers.purchase_intent === null) {
     return {
-      step: 12,
+      step: 13,
       field: "purchase_intent",
       message: "Please rate your likelihood of purchasing on the 0-10 scale.",
     };
   }
 
-  // Step 13: Creator details if opted in
+  // Step 14: Creator details if opted in
   if (answers.is_creator) {
     if (!answers.creator_platform) {
       return {
-        step: 13,
+        step: 14,
         field: "creator_platform",
         message: "Please select your primary content platform.",
       };
     }
     if (!answers.creator_handle || answers.creator_handle.trim().length === 0) {
       return {
-        step: 13,
+        step: 14,
         field: "creator_handle",
         message: "Please share your channel handle, profile URL, or society name.",
       };
     }
     if (!answers.creator_audience) {
       return {
-        step: 13,
+        step: 14,
         field: "creator_audience",
         message: "Please select your estimated follower or club size.",
       };
